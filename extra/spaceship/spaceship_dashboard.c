@@ -18,7 +18,7 @@ void print_dashboard() {
     printf("%-30s%s\n", "Class", ship_class);
     printf("%-30s%d\n", "Available seats", available_seats);
     printf("%-30s%d\n", "Mission days", mission_days);
-    printf("%-30s%d km\n", "Travelled distance", odometer_km);
+    printf("%-30s%ld km\n", "Travelled distance", odometer_km);
     printf("%-30s%.1f %%\n", "Fraction travelled at c", fraction_lightspeed * 100.0);
     printf("%-30s%.3f km\n", "Remaining range", remaining_range_km);
 }
