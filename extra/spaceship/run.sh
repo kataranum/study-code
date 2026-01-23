@@ -1,4 +1,6 @@
 #!/bin/bash
 
-gcc -Wall -Wextra spaceship_dashboard.c -o spaceship_dashboard.out
-./spaceship_dashboard.out
+FILE_NAME="spaceship_dashboard"
+
+gcc -Wall -Wextra "$FILE_NAME.c" -o "$FILE_NAME.out"
+./$FILE_NAME.out
