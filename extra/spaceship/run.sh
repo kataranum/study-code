@@ -1,4 +1,4 @@
 #!/bin/bash
 
-gcc spaceship_dashboard.c -o spaceship_dashboard.out
+gcc -Wall spaceship_dashboard.c -o spaceship_dashboard.out
 ./spaceship_dashboard.out
