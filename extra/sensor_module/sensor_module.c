@@ -16,7 +16,7 @@ void check_status(unsigned char status) {
         printf("Undervoltage.\n");
     }
 
-    unsigned char measurement = status & 0x03;
+    unsigned char measurement = status & 0x0F;
     printf("Measurement: %d\n", measurement);
 }
 
