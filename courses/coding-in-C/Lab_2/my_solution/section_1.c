@@ -1,10 +1,10 @@
 #include <stdio.h>
 
 void print_chessboard() {
-    for (int file = 8; file >= 1; file--) {
-        for (int rank = 0; rank < 8; rank++) {
-            char letter = 'A' + rank;
-            printf("%c%d ", letter, file);
+    for (int row = 8; row >= 1; row--) {
+        for (int column = 0; column < 8; column++) {
+            char letter = 'A' + column;
+            printf("%c%d ", letter, row);
         }
 
         printf("\n");
