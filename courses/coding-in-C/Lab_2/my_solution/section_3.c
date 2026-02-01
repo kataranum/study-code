@@ -1,18 +1,18 @@
 #include <stdio.h>
 
 void print_column_letters() {
-    printf("    ");
+    printf("%4s", "");
 
     for (int column = 0; column < 8; column++) {
         char letter = 'A' + column;
-        printf("%c   ", letter);
+        printf("%-4c", letter);
     }
 
     printf("\n");
 }
 
 void print_horizontal_line() {
-    printf("  ");
+    printf("%2s", "");
 
     for (int column = 0; column < 8; column++) {
         printf("+---");
@@ -22,20 +22,20 @@ void print_horizontal_line() {
 }
 
 void print_row(short row) {
-    printf("%d ", row);
+    printf("%-2d", row);
 
     for (short column = 0; column < 8; column++) {
         short is_black = (row + column) % 2;
 
         if (is_black) {
-            printf("|   ");
+            printf("%-4s", "|");
         }
         else {
-            printf("|###");
+            printf("%-4s", "|###");
         }
     }
 
-    printf("| %d\n", row);
+    printf("|%2d\n", row);
 }
 
 void print_chessboard() {
