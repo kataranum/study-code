@@ -1,9 +1,10 @@
 #include <stdio.h>
+#include <stdint.h>
 
 void print_column_letters() {
     printf("%4s", "");
 
-    for (int column = 0; column < 8; column++) {
+    for (uint8_t column = 0; column < 8; column++) {
         char letter = 'A' + column;
         printf("%-4c", letter);
     }
@@ -14,18 +15,18 @@ void print_column_letters() {
 void print_horizontal_line() {
     printf("%2s", "");
 
-    for (int column = 0; column < 8; column++) {
+    for (uint8_t column = 0; column < 8; column++) {
         printf("+---");
     }
 
     printf("+\n");
 }
 
-void print_row(short row) {
+void print_row(uint8_t row) {
     printf("%-2d", row);
 
-    for (short column = 0; column < 8; column++) {
-        short is_black = (row + column) % 2;
+    for (uint8_t column = 0; column < 8; column++) {
+        uint8_t is_black = (row + column) % 2;
 
         if (is_black) {
             printf("%-4s", "|");
@@ -41,7 +42,7 @@ void print_row(short row) {
 void print_chessboard() {
     print_column_letters();
 
-    for (short row = 8; row >= 1; row--) {
+    for (uint8_t row = 8; row >= 1; row--) {
         print_horizontal_line();
         print_row(row);
     }
