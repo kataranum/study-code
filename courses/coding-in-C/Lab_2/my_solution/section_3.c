@@ -23,7 +23,7 @@ void print_horizontal_line() {
 }
 
 void print_row(uint8_t row) {
-    printf("%-2d", row);
+    printf("%-2u", row);
 
     for (uint8_t column = 0; column < 8; column++) {
         uint8_t is_black = (row + column) % 2;
@@ -36,7 +36,7 @@ void print_row(uint8_t row) {
         }
     }
 
-    printf("|%2d\n", row);
+    printf("|%2u\n", row);
 }
 
 void print_chessboard() {
