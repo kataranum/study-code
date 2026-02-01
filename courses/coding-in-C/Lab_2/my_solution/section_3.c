@@ -21,9 +21,33 @@ void print_horizontal_line() {
     printf("+\n");
 }
 
+void print_row(short row) {
+    printf("%d ", row);
+
+    for (short column = 0; column < 8; column++) {
+        short is_black = (row + column) % 2;
+
+        if (is_black) {
+            printf("|   ");
+        }
+        else {
+            printf("|###");
+        }
+    }
+
+    printf("| %d\n", row);
+}
+
 void print_chessboard() {
     print_column_letters();
+
+    for (short row = 8; row >= 1; row--) {
+        print_horizontal_line();
+        print_row(row);
+    }
+
     print_horizontal_line();
+    print_column_letters();
 }
 
 int main() {
