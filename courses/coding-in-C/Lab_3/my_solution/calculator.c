@@ -55,13 +55,13 @@ int main() {
 
 bool get_input_values(float* lhs, float* rhs) {
     printf("Input first number: ");
-    if (scanf(" %f", lhs) < 1) {
+    if (! read_float(lhs)) {
         printf("Invalid input. Please input a decimal number.\n");
         return false;
     }
 
     printf("Input second number: ");
-    if (scanf(" %f", rhs) < 1) {
+    if (! read_float(rhs)) {
         printf("Invalid input. Please input a decimal number.\n");
         return false;
     }
@@ -72,7 +72,7 @@ bool get_input_values(float* lhs, float* rhs) {
 Operation get_operation() {
     char op_char = '\0';
     printf("Select one operation [+, -, *, /]: ");
-    if (scanf(" %c", &op_char) < 1) {
+    if (! read_char(&op_char)) {
         printf("Invalid input. Please input a valid operation [+, -, *, /].\n");
         return OP_UNDEFINED;
     }
