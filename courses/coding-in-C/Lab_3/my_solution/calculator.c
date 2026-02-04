@@ -59,6 +59,17 @@ int get_operation(char* operation) {
 }
 
 float perform_calculation(float lhs, float rhs, char operation) {
-    // TODO
+    switch (operation) {
+    case '+':
+        return lhs + rhs;
+    case '-':
+        return lhs - rhs;
+    case '*':
+        return lhs * rhs;
+    case '/':
+        return lhs / rhs;
+    }
+
+    // TODO: Print error message if operation is invalid
     return 0.0;
 }
