@@ -67,15 +67,18 @@ bool get_input_values(float* lhs, float* rhs) {
     return true;
 }
 
-bool get_operation(char* operation) {
+bool get_operation(Operation* operation) {
+    char op_char = '\0';
     printf("Select one operation [+, -, *, /]: ");
-    if (scanf(" %c", operation) < 1) {
+    if (scanf(" %c", &op_char) < 1) {
         printf("Invalid input. Please input a valid operation [+, -, *, /].\n");
         return false;
     }
 
-    if (! is_valid_operation(operation)) {
-        printf("'%c' is not a valid operation.\n");
+    *operation = char_to_operation(op_char);
+
+    if (*operation == OP_UNDEFINED) {
+        printf("Invalid operation.\n");
         return false;
     }
 
