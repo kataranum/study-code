@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include <string.h>
 
 typedef enum {
@@ -104,9 +105,9 @@ bool read_float(float* value) {
     }
 
     // parse as float
-    char** end;
-    *value = strtof(buffer, end);
-    if (*end == buffer) {
+    char* end;
+    *value = strtof(buffer, &end);
+    if (end == buffer) {
         return false;
     }
 
