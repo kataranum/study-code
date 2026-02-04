@@ -31,12 +31,12 @@ int get_input_values(float* lhs, float* rhs) {
     float input_rhs = 0.0;
 
     printf("Input first number: ");
-    scanf("%f", &input_lhs);
+    scanf(" %f", &input_lhs);
 
     // TODO: Check validity
 
     printf("Input second number: ");
-    scanf("%f", &input_rhs);
+    scanf(" %f", &input_rhs);
 
     // TODO: Check validity
 
@@ -50,7 +50,7 @@ int get_operation(char* operation) {
     char input_operation = '\0';
 
     printf("Select one operation [+, -, *, /]: ");
-    scanf("%c", &input_operation);
+    scanf(" %c", &input_operation);
 
     // TODO: Check validity
 
