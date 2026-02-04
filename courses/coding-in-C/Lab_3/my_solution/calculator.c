@@ -1,9 +1,21 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+typedef enum {
+    OP_ADD,
+    OP_SUB,
+    OP_MUL,
+    OP_DIV,
+
+    OP_UNDEFINED,
+} Operation;
+
 bool get_input_values(float* lhs, float* rhs);
-bool get_operation(char* operation);
-bool perform_calculation(float* result, float lhs, float rhs, char operation);
+bool get_operation(Operation* operation);
+bool perform_calculation(float* result, float lhs, float rhs, Operation operation);
+
+Operation char_to_operation(char operation);
+char opertaion_to_char(Operation operation);
 
 bool is_valid_operation(char operation);
 
@@ -84,6 +96,35 @@ bool perform_calculation(float* result, float lhs, float rhs, char operation) {
 
     printf("Unknown operation.\n");
     return false;
+}
+
+Operation char_to_operation(char operation) {
+    switch (operation) {
+    case '+':
+        return OP_ADD;
+    case '-':
+        return OP_SUB;
+    case '*':
+        return OP_MUL;
+    case '/':
+        return OP_DIV;
+    }
+
+    return OP_UNDEFINED;
+}
+char opertaion_to_char(Operation operation) {
+    switch (operation) {
+    case OP_ADD:
+        return '+';
+    case OP_SUB:
+        return '-';
+    case OP_MUL:
+        return '*';
+    case OP_DIV:
+        return '/';
+    }
+
+    return '\0';
 }
 
 bool is_valid_operation(char operation) {
