@@ -104,7 +104,9 @@ bool read_float(float* value) {
     }
 
     // parse as float
-    if (scanf("%f", value) < 1) {
+    char** end;
+    *value = strtof(buffer, end);
+    if (*end == buffer) {
         return false;
     }
 
