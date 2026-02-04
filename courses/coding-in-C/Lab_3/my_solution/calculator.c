@@ -12,13 +12,13 @@ int main() {
 
     float lhs = 0.0;
     float rhs = 0.0;
-    if (get_input_values(&lhs, &rhs) != 0) {
+    if (! get_input_values(&lhs, &rhs)) {
         printf("Could not read input values.\n");
         return -1;
     }
 
     char operation = '\0';
-    if (get_operation(&operation) != 0) {
+    if (! get_operation(&operation)) {
         printf("Could not read operation.\n");
         return -1;
     }
@@ -29,35 +29,35 @@ int main() {
     return 0;
 }
 
-int get_input_values(float* lhs, float* rhs) {
+bool get_input_values(float* lhs, float* rhs) {
     printf("Input first number: ");
     if (scanf(" %f", lhs) < 1) {
         printf("Invalid input. Please input a decimal number.\n");
-        return -1;
+        return false;
     }
 
     printf("Input second number: ");
     if (scanf(" %f", rhs) < 1) {
         printf("Invalid input. Please input a decimal number.\n");
-        return -1;
+        return false;
     }
 
-    return 0;
+    return true;
 }
 
-int get_operation(char* operation) {
+bool get_operation(char* operation) {
     printf("Select one operation [+, -, *, /]: ");
     if (scanf(" %c", operation) < 1) {
         printf("Invalid input. Please input a valid operation [+, -, *, /].\n");
-        return -1;
+        return false;
     }
 
     if (! is_valid_operation(operation)) {
         printf("'%c' is not a valid operation.\n");
-        return -1;
+        return false;
     }
 
-    return 0;
+    return true;
 }
 
 float perform_calculation(float lhs, float rhs, char operation) {
