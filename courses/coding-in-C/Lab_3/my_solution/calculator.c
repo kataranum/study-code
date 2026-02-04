@@ -27,23 +27,17 @@ int main() {
 }
 
 int get_input_values(float* lhs, float* rhs) {
-    float input_lhs = 0.0;
-    float input_rhs = 0.0;
-
     printf("Input first number: ");
-    if (scanf(" %f", &input_lhs) < 1) {
+    if (scanf(" %f", lhs) < 1) {
         printf("Invalid input. Please input a decimal number.\n");
         return -1;
     }
 
     printf("Input second number: ");
-    if (scanf(" %f", &input_rhs) < 1) {
+    if (scanf(" %f", rhs) < 1) {
         printf("Invalid input. Please input a decimal number.\n");
         return -1;
     }
-
-    *lhs = input_lhs;
-    *rhs = input_rhs;
 
     return 0;
 }
