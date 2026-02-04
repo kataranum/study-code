@@ -1,8 +1,11 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 int get_input_values(float* lhs, float* rhs);
 int get_operation(char* operation);
 float perform_calculation(float lhs, float rhs, char operation);
+
+bool is_valid_operation(char operation);
 
 int main() {
     printf("Calculator program (will run only once :P)\n");
@@ -43,14 +46,17 @@ int get_input_values(float* lhs, float* rhs) {
 }
 
 int get_operation(char* operation) {
-    char input_operation = '\0';
-
     printf("Select one operation [+, -, *, /]: ");
-    scanf(" %c", &input_operation);
+    if (scanf(" %c", operation) < 1) {
+        printf("Invalid input. Please input a valid operation [+, -, *, /].\n");
+        return -1;
+    }
 
-    // TODO: Check validity
+    if (! is_valid_operation(operation)) {
+        printf("'%c' is not a valid operation.\n");
+        return -1;
+    }
 
-    *operation = input_operation;
     return 0;
 }
 
@@ -68,4 +74,17 @@ float perform_calculation(float lhs, float rhs, char operation) {
 
     // TODO: Print error message if operation is invalid
     return 0.0;
+}
+
+bool is_valid_operation(char operation) {
+    char valid_operations[] = { '+', '-', '*', '/' };
+    int operations_len = sizeof(valid_operations) / sizeof(valid_operations[0]);
+
+    for (int i = 0; i < operations_len; i++) {
+        if (operation == valid_operations[i]) {
+            return true;
+        }
+    }
+
+    return false;
 }
