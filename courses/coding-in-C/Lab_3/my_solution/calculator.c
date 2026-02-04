@@ -11,7 +11,7 @@ typedef enum {
 } Operation;
 
 bool get_input_values(float* lhs, float* rhs);
-bool get_operation(Operation* operation);
+Operation get_operation();
 bool perform_calculation(float* result, float lhs, float rhs, Operation operation);
 
 Operation char_to_operation(char operation);
@@ -32,9 +32,9 @@ int main() {
         return -1;
     }
 
-    char operation = '\0';
-    if (! get_operation(&operation)) {
-        printf("Could not read operation.\n");
+    Operation operation = get_operation();
+    if (operation == OP_UNDEFINED) {
+        printf("Operation is invalid.\n");
         return -1;
     }
 
@@ -65,22 +65,15 @@ bool get_input_values(float* lhs, float* rhs) {
     return true;
 }
 
-bool get_operation(Operation* operation) {
+Operation get_operation() {
     char op_char = '\0';
     printf("Select one operation [+, -, *, /]: ");
     if (scanf(" %c", &op_char) < 1) {
         printf("Invalid input. Please input a valid operation [+, -, *, /].\n");
-        return false;
+        return OP_UNDEFINED;
     }
 
-    *operation = char_to_operation(op_char);
-
-    if (*operation == OP_UNDEFINED) {
-        printf("Invalid operation.\n");
-        return false;
-    }
-
-    return true;
+    return char_to_operation(op_char);
 }
 
 bool perform_calculation(float* result, float lhs, float rhs, Operation operation) {
