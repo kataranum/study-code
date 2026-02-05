@@ -7,12 +7,10 @@ typedef enum {
     OP_SUB,
     OP_MUL,
     OP_DIV,
-
-    OP_UNDEFINED,
 } Operation;
 
 bool get_input_values(float* lhs, float* rhs);
-Operation get_operation();
+bool get_operation(Operation* operation);
 bool perform_calculation(float* result, float lhs, float rhs, Operation operation);
 
 bool read_float(float* value);
@@ -36,8 +34,8 @@ int main() {
         return -1;
     }
 
-    Operation operation = get_operation();
-    if (operation == OP_UNDEFINED) {
+    Operation operation = OP_ADD;
+    if (! get_operation(&operation)) {
         printf("Operation is invalid.\n");
         return -1;
     }
@@ -70,15 +68,16 @@ bool get_input_values(float* lhs, float* rhs) {
     return true;
 }
 
-Operation get_operation() {
+bool get_operation(Operation* operation) {
     char op_char = '\0';
     printf("Select one operation [+, -, *, /]: ");
     if (! read_char(&op_char)) {
         printf("Invalid input. Please input a valid operation [+, -, *, /].\n");
-        return OP_UNDEFINED;
+        return false;
     }
 
-    return char_to_operation(op_char);
+    *operation = char_to_operation(op_char);
+    return true;
 }
 
 bool perform_calculation(float* result, float lhs, float rhs, Operation operation) {
@@ -91,9 +90,6 @@ bool perform_calculation(float* result, float lhs, float rhs, Operation operatio
         return operation_mul(result, lhs, rhs);
     case OP_DIV:
         return operation_div(result, lhs, rhs);
-    default:
-        printf("Undefined operation.\n");
-        return false;
     }
 }
 
@@ -133,8 +129,8 @@ Operation char_to_operation(char operation) {
         return OP_MUL;
     case '/':
         return OP_DIV;
-    default:
-        return OP_UNDEFINED;
+    //default:
+        //return OP_UNDEFINED;
     }
 }
 char opertaion_to_char(Operation operation) {
@@ -147,8 +143,6 @@ char opertaion_to_char(Operation operation) {
         return '*';
     case OP_DIV:
         return '/';
-    default:
-        return '\0';
     }
 }
 
