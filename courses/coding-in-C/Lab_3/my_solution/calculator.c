@@ -1,4 +1,5 @@
 #include <math.h>
+#include <string.h>
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -90,6 +91,10 @@ float read_float() {
         printf("Input failed.\n");
         return NAN;
     }
+
+    // Remove last character (newline)
+    int last_char_index = strlen(buffer) - 1;
+    buffer[last_char_index] = '\0';
 
     // parse as float
     char* end;
