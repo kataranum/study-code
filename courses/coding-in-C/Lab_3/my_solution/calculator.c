@@ -42,12 +42,12 @@ int main() {
 }
 
 Operation get_operation() {
-    char op_char = '\0';
     printf("Select one operation [+, -, *, /]: ");
-    if (! read_char(&op_char)) {
-        printf("Invalid input. Please input a valid operation [+, -, *, /].\n");
-        exit(1);
-    }
+    char op_char = read_char();
+    //if (! ) {
+        //printf("Invalid input. Please input a valid operation [+, -, *, /].\n");
+        //exit(1);
+    //}
 
     return char_to_operation(op_char);
 }
