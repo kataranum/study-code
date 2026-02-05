@@ -8,6 +8,8 @@ typedef enum {
     OP_SUB,
     OP_MUL,
     OP_DIV,
+
+    OP_UNDEFINED,
 } Operation;
 
 Operation get_operation();
@@ -44,7 +46,7 @@ int main() {
     }
 
     Operation operation = get_operation();
-    if (operation == '\0') {
+    if (operation == OP_UNDEFINED) {
         printf("Invalid input. Please input a valid operation [+, -, *, /].\n");
         exit(1);
     }
@@ -119,8 +121,7 @@ Operation char_to_operation(char operation) {
     case '/':
         return OP_DIV;
     default:
-        printf("Unrecognized character '%c'\n", operation);
-        exit(1);
+        return OP_UNDEFINED;
     }
 }
 char opertaion_to_char(Operation operation) {
