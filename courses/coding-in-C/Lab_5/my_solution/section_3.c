@@ -82,14 +82,17 @@ void simulate_timestep(const int *p_space, int *p_next, int size) {
         // ensure particle doesn't go out of bounds
         new_position = clamp(new_position, 0, size-1);
 
-        // if there's already a particle at the new position
-        if (p_next[new_position]) {
-            printf("Collision at i = %d\n", new_position);
-            p_next[new_position] = 0;
-            continue;
-        }
+        p_next[new_position] += particle;
+    }
 
-        p_next[new_position] = particle;
+    // check for collisions
+    for (int i = 0; i < size; i++) {
+        int particle = p_next[i];
+
+        if (particle > 1) {
+            printf("Collision at i = %d\n", i);
+            p_next[i] = 0;
+        }
     }
 }
 
