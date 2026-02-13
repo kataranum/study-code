@@ -147,7 +147,7 @@ void print_space(const int *p_space, int size, int timestep) {
         printf("%d ", p_space[i]);
     }
 
-    printf("\n");
+    printf("\n\n");
 }
 
 int main(void) {
@@ -167,13 +167,11 @@ int main(void) {
     while (amount_particles(space, SPACE_SIZE) > 1) {
         int space_next[SPACE_SIZE] = { 0 };
         simulate_timestep(p_space, space_next, SPACE_SIZE);
-        
         memcpy(space, space_next, sizeof(space));
 
         timestep++;
 
         print_space(space, SPACE_SIZE, timestep);
-        printf("\n");
     }
 
     printf("finished\n");
