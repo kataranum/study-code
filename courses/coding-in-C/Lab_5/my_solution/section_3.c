@@ -2,11 +2,20 @@
 
 #define SPACE_SIZE 10
 
-void simulate_timestep(int* space, int* next, int size) {
-    // TODO: Process this
+void simulate_timestep(const int *p_space, int *p_next, int size) {
+
+    // particles always move right
+    // TODO: Make them move randomly
+    for (int i = 0; i < size; i++) {
+        int particle = p_space[i];
+
+        if (particle) {
+            p_next[i + 1] = particle;
+        }
+    }
 }
 
-void print_space(int *p_space, int size) {
+void print_space(const int *p_space, int size) {
     printf("i: ");
     for (int i = 0; i < size; i++) {
         printf("%d ", i);
@@ -29,6 +38,8 @@ int main(void) {
 
     int *p_space = space;
     int space_next[SPACE_SIZE] = { 0 };
+
+    simulate_timestep(p_space, space_next, SPACE_SIZE);
 
     printf("T = 0\n");
     print_space(space, SPACE_SIZE);
