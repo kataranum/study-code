@@ -3,6 +3,17 @@
 
 #define SPACE_SIZE 10
 
+int clamp(int value, int min, int max) {
+    if (value < min) {
+        return min;
+    }
+    if (value > max) {
+        return max;
+    }
+    
+    return value;
+}
+
 void simulate_timestep(const int *p_space, int *p_next, int size) {
 
     // particles always move right
@@ -11,7 +22,8 @@ void simulate_timestep(const int *p_space, int *p_next, int size) {
         int particle = p_space[i];
 
         if (particle) {
-            p_next[i + 1] = particle;
+            int new_position = clamp(i + 1, 0, size-1);
+            p_next[new_position] = particle;
         }
     }
 }
