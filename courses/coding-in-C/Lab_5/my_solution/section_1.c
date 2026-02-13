@@ -9,5 +9,8 @@ int main(void) {
     printf("x via p = %d\n", *p);
     printf("x via pp = %d\n", **pp);
 
+    **pp = 42;
+    printf("x = %d\n", x);
+
     return 0;
 }
