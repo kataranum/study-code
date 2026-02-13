@@ -58,6 +58,26 @@ int get_particle_offset(void) {
 }
 
 /**
+ * @brief Anihilate all colliding particles
+ *
+ * If more than one particle is occupying the same space (the value at that
+ * space will be higher than 1), set that space to 0 and print a message.
+ *
+ * @param[in] p_space Given space of particles
+ * @param[in] size    Array length of `p_space`
+ */
+void anihilate_particles(int *p_space, int size) {
+    for (int i = 0; i < size; i++) {
+        int particle = p_space[i];
+
+        if (particle > 1) {
+            printf("Collision at i = %d\n", i);
+            p_space[i] = 0;
+        }
+    }
+}
+
+/**
  * @brief Simulate a timestep in `p_space`, writing the result into p_next
  *
  * Particles (denoted by a 1) will randomly move either left or right. In case
@@ -85,15 +105,7 @@ void simulate_timestep(const int *p_space, int *p_next, int size) {
         p_next[new_position] += particle;
     }
 
-    // check for collisions
-    for (int i = 0; i < size; i++) {
-        int particle = p_next[i];
-
-        if (particle > 1) {
-            printf("Collision at i = %d\n", i);
-            p_next[i] = 0;
-        }
-    }
+    anihilate_particles(p_next, size);
 }
 
 /**
