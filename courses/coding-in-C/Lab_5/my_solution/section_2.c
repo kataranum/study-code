@@ -23,5 +23,13 @@ int main(int argc, char **argv) {
         printf("Length: %ld\n\n", strlen(*(argv + i)));
     }
 
+    // The array index operator `pointer[index]` is equivalent to writing
+    // `*(pointer + index)`.
+
+    // Arrays are treated like pointers to their first element under most
+    // circumstances. Only exception is using `sizeof`, for pointers that gives
+    // the size of the pointer type, for arrays it gives the size of the whole
+    // array.
+
     return 0;
 }
