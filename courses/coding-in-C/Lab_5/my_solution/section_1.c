@@ -5,10 +5,9 @@ int main(void) {
     int *p = &x;
     int **pp = &p;
 
-    // TODO: complete the output statements
-    printf("x = %d\n", ???);
-    printf("x via p = %d\n", ???);
-    printf("x via pp = %d\n", ???);
+    printf("x = %d\n", x);
+    printf("x via p = %d\n", *p);
+    printf("x via pp = %d\n", **pp);
 
     return 0;
 }
