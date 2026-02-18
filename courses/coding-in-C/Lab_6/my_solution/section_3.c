@@ -166,12 +166,12 @@ void print_edge_detections(
 void print_detection_intervals(const Sensor *p_sensor) {
     printf("Sensor %d detections: ", p_sensor->id);
 
-    for (int i = 1; i < DATA_SIZE; i++) {
-        int current_detection = p_sensor->object_detection[i];
-        int last_detection    = p_sensor->object_detection[i - 1];
+    int last_detection = 0;
+    float last_time = p_sensor->data[0].time;
 
+    for (int i = 0; i < DATA_SIZE; i++) {
+        int current_detection = p_sensor->object_detection[i];
         float current_time = p_sensor->data[i].time;
-        float last_time = p_sensor->data[i - 1].time;
 
         print_edge_detections(
             current_detection,
@@ -180,6 +180,9 @@ void print_detection_intervals(const Sensor *p_sensor) {
             last_time,
             i
         );
+
+        last_detection = current_detection;
+        last_time = current_time;
     }
 
     printf("\n");
@@ -196,23 +199,22 @@ void print_detection_intervals(const Sensor *p_sensor) {
  */
 void print_fused_intervals(const Sensor *p_sensor_1, const Sensor *p_sensor_2) {
     printf("Fused sensor detections: ");
-    for (int i = 1; i < DATA_SIZE; i++) {
+
+    int last_detection = 0;
+    float last_time = p_sensor_1->data[0].time;
+
+    for (int i = 0; i < DATA_SIZE; i++) {
         int current_detection_1 = p_sensor_1->object_detection[i];
         int current_detection_2 = p_sensor_2-> object_detection[i];
-        int last_detection_1 = p_sensor_1->object_detection[i - 1];
-        int last_detection_2 = p_sensor_2->object_detection[i - 1];
+        int current_detection = current_detection_1 && current_detection_2;
 
         float current_time = p_sensor_1->data[i].time;
-        float last_time = p_sensor_1->data[i - 1].time;
 
         if (!float_eq(current_time, p_sensor_2->data[i].time)) {
             printf("Sensor 1 and Sensor 2 times don't line up.\n");
             printf("Unsupported operation\n");
             exit(1);
         }
-
-        int current_detection = current_detection_1 && current_detection_2;
-        int last_detection = last_detection_1 && last_detection_2;
 
         print_edge_detections(
             current_detection,
@@ -221,6 +223,9 @@ void print_fused_intervals(const Sensor *p_sensor_1, const Sensor *p_sensor_2) {
             last_time,
             i
         );
+
+        last_detection = current_detection;
+        last_time = current_time;
     }
 
     printf("\n");
