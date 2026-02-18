@@ -143,12 +143,10 @@ void print_fused_intervals(const Sensor *p_sensor_1, const Sensor *p_sensor_2) {
 }
 
 void print_results(const Sensor *p_sensor_1, const Sensor *p_sensor_2) {
-    // sensor 1 detections
     printf("Sensor 1 detections: ");
     print_detection_intervals(p_sensor_1);
     printf("\n\n");
 
-    // sensor 2 detections
     printf("Sensor 2 detections: ");
     print_detection_intervals(p_sensor_2);
     printf("\n\n");
