@@ -18,8 +18,10 @@ void test_reading(void) {
     fgets(buffer, sizeof(buffer), f);
     printf("fgets(): %s\n", buffer);
 
-    fscanf(f, "%s\n", buffer);
-    printf("fscanf(): %s\n", buffer);
+    char buffer_2[256];
+    char buffer_3[256];
+    fscanf(f, "%s %s %s", buffer, buffer_2, buffer_3);
+    printf("fscanf(): %s %s %s\n", buffer, buffer_2, buffer_3);
 
     fclose(f);
 }
