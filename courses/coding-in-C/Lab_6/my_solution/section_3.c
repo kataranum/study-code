@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdbool.h>
 #include <stdlib.h>
 
 #define DATA_SIZE 3000
@@ -24,7 +23,7 @@ float abs_f(float val) {
     return *(float*)(&bits);
 }
 
-bool float_eq(float lhs, float rhs) {
+int float_eq(float lhs, float rhs) {
     const float EPSILON = 0.0001;
     float delta = lhs - rhs;
 
