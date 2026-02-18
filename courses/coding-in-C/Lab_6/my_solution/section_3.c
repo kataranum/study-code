@@ -55,13 +55,11 @@ bool read_sensor(Sensor *p_sensor, const char *path) {
     return true;
 }
 
-void print_results(const Sensor *p_sensor_1, const Sensor *p_sensor_2) {
-    // sensor 1 detections
-    printf("Sensor 1 detections: ");
+void print_detection_interval(const Sensor *p_sensor) {
     for (int i = 1; i < DATA_SIZE; i++) {
-        int current_detection = p_sensor_1->object_detection[i];
-        int last_detection    = p_sensor_1->object_detection[i - 1];
-        float time = p_sensor_1->data[i].time;
+        int current_detection = p_sensor->object_detection[i];
+        int last_detection    = p_sensor->object_detection[i - 1];
+        float time = p_sensor->data[i].time;
 
         // trigger on rising edge
         if (!last_detection && current_detection) {
@@ -72,24 +70,17 @@ void print_results(const Sensor *p_sensor_1, const Sensor *p_sensor_2) {
             printf("End: %.2f s ", time);
         }
     }
+}
+
+void print_results(const Sensor *p_sensor_1, const Sensor *p_sensor_2) {
+    // sensor 1 detections
+    printf("Sensor 1 detections: ");
+    print_detection_interval(p_sensor_1);
     printf("\n\n");
 
     // sensor 2 detections
     printf("Sensor 2 detections: ");
-    for (int i = 1; i < DATA_SIZE; i++) {
-        int current_detection = p_sensor_2->object_detection[i];
-        int last_detection    = p_sensor_2->object_detection[i - 1];
-        float time = p_sensor_2->data[i].time;
-
-        // trigger on rising edge
-        if (!last_detection && current_detection) {
-            printf("Start: %.2f s ", time);
-        }
-        // trigger on falling edge
-        else if (last_detection && !current_detection) {
-            printf("End: %.2f s ", time);
-        }
-    }
+    print_detection_interval(p_sensor_2);
     printf("\n\n");
 }
 
