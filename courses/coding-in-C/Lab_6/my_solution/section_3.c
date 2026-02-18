@@ -164,6 +164,8 @@ void print_edge_detections(
  * @param[in] p_sensor Given sensor
  */
 void print_detection_intervals(const Sensor *p_sensor) {
+    printf("Sensor %d detections: ", p_sensor->id);
+
     for (int i = 1; i < DATA_SIZE; i++) {
         int current_detection = p_sensor->object_detection[i];
         int last_detection    = p_sensor->object_detection[i - 1];
@@ -179,6 +181,8 @@ void print_detection_intervals(const Sensor *p_sensor) {
             i
         );
     }
+
+    printf("\n");
 }
 
 /**
@@ -191,6 +195,7 @@ void print_detection_intervals(const Sensor *p_sensor) {
  * @param[in] p_sensor_2 Second sensor
  */
 void print_fused_intervals(const Sensor *p_sensor_1, const Sensor *p_sensor_2) {
+    printf("Fused sensor detections: ");
     for (int i = 1; i < DATA_SIZE; i++) {
         int current_detection_1 = p_sensor_1->object_detection[i];
         int current_detection_2 = p_sensor_2-> object_detection[i];
@@ -217,6 +222,8 @@ void print_fused_intervals(const Sensor *p_sensor_1, const Sensor *p_sensor_2) {
             i
         );
     }
+
+    printf("\n");
 }
 
 /**
@@ -226,17 +233,13 @@ void print_fused_intervals(const Sensor *p_sensor_1, const Sensor *p_sensor_2) {
  * @param[in] p_sensor_2 Sensor 2
  */
 void print_results(const Sensor *p_sensor_1, const Sensor *p_sensor_2) {
-    printf("Sensor 1 detections: ");
     print_detection_intervals(p_sensor_1);
-    printf("\n\n");
-
-    printf("Sensor 2 detections: ");
-    print_detection_intervals(p_sensor_2);
-    printf("\n\n");
-
-    printf("Fused sensor detections: ");
-    print_fused_intervals(p_sensor_1, p_sensor_2);
     printf("\n");
+
+    print_detection_intervals(p_sensor_2);
+    printf("\n");
+
+    print_fused_intervals(p_sensor_1, p_sensor_2);
 }
 
 int main(void) {
