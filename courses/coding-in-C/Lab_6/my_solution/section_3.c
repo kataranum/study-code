@@ -21,10 +21,10 @@ Sensor init_sensor(int id, double threshold) {
     sensor.threshold = threshold;
 
     for (int i = 0; i < DATA_SIZE; i++) {
-        sensor.data.time = 0.0;
-        sensor.data.probability = 0.0;
+        sensor.data[i].time = 0.0;
+        sensor.data[i].probability = 0.0;
         
-        sensor.object_detection = 0;
+        sensor.object_detection[i] = 0;
     }
 
     return sensor;
