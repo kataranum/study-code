@@ -1,17 +1,34 @@
+/*
+ * File: section_3.c
+ * Description: Lab_6 Section III implementation
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 
 #define DATA_SIZE 3000
 
+/**
+ * @brief A data sample used in Sensor
+ */
 typedef struct {
+    /** Time in seconds */
     float time;
+    /** Measurement value between 0 and 1 */
     double probability;
 } SensorData;
 
+/**
+ * @brief A collection of sensor sample points and related values
+ */
 typedef struct {
+    /** (Unique) Sensor identification */
     int id;
+    /** Threshold for triggering object detection */
     double threshold;
+    /** All sample points */
     SensorData data[DATA_SIZE];
+    /** All object detections mapped to sample points */
     int object_detection[DATA_SIZE];
 } Sensor;
 
