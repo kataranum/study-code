@@ -35,6 +35,7 @@ bool read_sensor(Sensor *p_sensor, const char *path) {
     FILE *f = fopen(path, "r");
 
     for (int i = 0; i < DATA_SIZE; i++) {
+        // reading from file
         float seconds, measurement;
 
         int res = fscanf(f, "%f %f\n", &seconds, &measurement);
@@ -45,6 +46,9 @@ bool read_sensor(Sensor *p_sensor, const char *path) {
 
         p_sensor->data[i].time = seconds;
         p_sensor->data[i].probability = measurement;
+
+        // binary detection
+        p_sensor->object_detection[i] = measurement > p_sensor->threshold;
     }
 
     fclose(f);
