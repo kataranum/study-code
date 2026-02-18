@@ -32,6 +32,12 @@ typedef struct {
     int object_detection[DATA_SIZE];
 } Sensor;
 
+/**
+ * @brief Mathematical absolute for a float value
+ *
+ * @param[in] val Given input value
+ * @return        `val` but positive
+ */
 float abs_f(float val) {
     // evil bit manipulation trick
     // set the leftmost (sign) bit to 0 to make any float positive
@@ -40,6 +46,16 @@ float abs_f(float val) {
     return *(float*)(&bits);
 }
 
+/**
+ * @brief Rough comparison of two floats
+ *
+ * Doesn't actually check for precise equality (as you shouldn't with floats).
+ * This will return true if both floats are very close to each other.
+ *
+ * @param[in] lhs Left hand side
+ * @param[in] rhs Right hand side
+ * @return        `lhs` and `rhs` are close enough to be considered equal
+ */
 int float_eq(float lhs, float rhs) {
     const float EPSILON = 0.0001;
     float delta = lhs - rhs;
@@ -47,6 +63,13 @@ int float_eq(float lhs, float rhs) {
     return abs_f(delta) < EPSILON;
 }
 
+/**
+ * @brief Initialize a `Sensor` with the given values and set samples to 0
+ *
+ * @param[in] id        Given sensor id
+ * @param[in] threshold Given sensor threshold
+ * @return              Fully initialized `Sensor`
+ */
 Sensor init_sensor(int id, double threshold) {
     Sensor sensor;
 
@@ -63,6 +86,18 @@ Sensor init_sensor(int id, double threshold) {
     return sensor;
 }
 
+/**
+ * @brief Read a sensor file into `p_sensor` and compute object detection
+ *
+ * Sensor data is set to the appropate values, and Sensor.object_detection will
+ * be `true` if sensor probability is above sensor threshold.
+ *
+ * Will leave part of sensor data uninitialized if the sensor file has less than
+ * `DATA_LEN` lines.
+ *
+ * @param[out] p_sensor Sensor to write values into
+ * @param[in]  path     Path to sensor file
+ */
 void read_sensor(Sensor *p_sensor, const char *path) {
     FILE *f = fopen(path, "r");
 
@@ -86,6 +121,19 @@ void read_sensor(Sensor *p_sensor, const char *path) {
     fclose(f);
 }
 
+/**
+ * @brief Common code between print_detection_intervals() and print_fused_intervals()
+ *
+ * Will print a start message for rising edge, and an end message for falling
+ * edge. Also print an end message for the last sample if it still has active
+ * object detection
+ *
+ * @param[in] current_detection `object_detection` for current index
+ * @param[in] last_detection    `object_detection` for last index
+ * @param[in] current_time      `time` for current index
+ * @param[in] last_time         `time` for last index
+ * @param[in] i                 current index
+ */
 void print_edge_detections(
     int current_detection,
     int last_detection,
@@ -110,6 +158,11 @@ void print_edge_detections(
     }
 }
 
+/**
+ * @brief Print object detection intervals for the given sensor
+ *
+ * @param[in] p_sensor Given sensor
+ */
 void print_detection_intervals(const Sensor *p_sensor) {
     for (int i = 1; i < DATA_SIZE; i++) {
         int current_detection = p_sensor->object_detection[i];
@@ -128,6 +181,15 @@ void print_detection_intervals(const Sensor *p_sensor) {
     }
 }
 
+/**
+ * @brief Print fused detection intervals for two sensors
+ *
+ * Fusing two object detection intervals results in another object detection
+ * interval which is only 1 if both sensor object detections are also 1.
+ *
+ * @param[in] p_sensor_1 First sensor
+ * @param[in] p_sensor_2 Second sensor
+ */
 void print_fused_intervals(const Sensor *p_sensor_1, const Sensor *p_sensor_2) {
     for (int i = 1; i < DATA_SIZE; i++) {
         int current_detection_1 = p_sensor_1->object_detection[i];
@@ -157,6 +219,12 @@ void print_fused_intervals(const Sensor *p_sensor_1, const Sensor *p_sensor_2) {
     }
 }
 
+/**
+ * @brief Print all sensor detection intervals for Sensor 1 and Sensor 2
+ *
+ * @param[in] p_sensor_1 Sensor 1
+ * @param[in] p_sensor_2 Sensor 2
+ */
 void print_results(const Sensor *p_sensor_1, const Sensor *p_sensor_2) {
     printf("Sensor 1 detections: ");
     print_detection_intervals(p_sensor_1);
