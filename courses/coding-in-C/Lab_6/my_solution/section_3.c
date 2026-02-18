@@ -71,6 +71,30 @@ bool read_sensor(Sensor *p_sensor, const char *path) {
     return true;
 }
 
+void print_edge_detections(
+    int current_detection,
+    int last_detection,
+    float current_time,
+    float last_time,
+    int i
+) {
+    // Edge case: When the last measurement is still above threshold, we
+    // still need to print an "End" message as we do on falling edge.
+    int is_last_and_active = i == DATA_SIZE-1 && current_detection;
+
+    // trigger on rising edge
+    if (!last_detection && current_detection) {
+        printf("Start: %.2f s ", current_time);
+    }
+    // trigger on falling edge
+    else if (last_detection && !current_detection) {
+        printf("End: %.2f s ", last_time);
+    }
+    else if (is_last_and_active) {
+        printf("End: %.2f s ", current_time);
+    }
+}
+
 void print_detection_intervals(const Sensor *p_sensor) {
     for (int i = 1; i < DATA_SIZE; i++) {
         int current_detection = p_sensor->object_detection[i];
@@ -79,21 +103,13 @@ void print_detection_intervals(const Sensor *p_sensor) {
         float current_time = p_sensor->data[i].time;
         float last_time = p_sensor->data[i - 1].time;
 
-        // Edge case: When the last measurement is still above threshold, we
-        // still need to print an "End" message as we do on falling edge.
-        int is_last_and_active = i == DATA_SIZE-1 && current_detection;
-
-        // trigger on rising edge
-        if (!last_detection && current_detection) {
-            printf("Start: %.2f s ", current_time);
-        }
-        // trigger on falling edge
-        else if (last_detection && !current_detection) {
-            printf("End: %.2f s ", last_time);
-        }
-        else if (is_last_and_active) {
-            printf("End: %.2f s ", current_time);
-        }
+        print_edge_detections(
+            current_detection,
+            last_detection,
+            current_time,
+            last_time,
+            i
+        );
     }
 }
 
@@ -116,21 +132,13 @@ void print_fused_intervals(const Sensor *p_sensor_1, const Sensor *p_sensor_2) {
         int current_detection = current_detection_1 && current_detection_2;
         int last_detection = last_detection_1 && last_detection_2;
 
-        // Edge case: When the last measurement is still above threshold, we
-        // still need to print an "End" message as we do on falling edge.
-        int is_last_and_active = i == DATA_SIZE-1 && current_detection;
-
-        // trigger on rising edge
-        if (!last_detection && current_detection) {
-            printf("Start: %.2f s ", current_time);
-        }
-        // trigger on falling edge
-        else if (last_detection && !current_detection) {
-            printf("End: %.2f s ", last_time);
-        }
-        else if (is_last_and_active) {
-            printf("End: %.2f s ", current_time);
-        }
+        print_edge_detections(
+            current_detection,
+            last_detection,
+            current_time,
+            last_time,
+            i
+        );
     }
 }
 
