@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 #define DATA_SIZE 3000
 
@@ -14,6 +15,21 @@ typedef struct {
     SensorData data[DATA_SIZE];
     int object_detection[DATA_SIZE];
 } Sensor;
+
+float abs_f(float val) {
+    // evil bit manipulation trick
+    // set the leftmost (sign) bit to 0 to make any float positive
+    int bits = *(int*)(&val);
+    bits &= 0x7FFF;
+    return *(float*)(&bits);
+}
+
+bool float_eq(float lhs, float rhs) {
+    const float EPSILON = 0.0001;
+    float delta = lhs - rhs;
+
+    return abs_f(delta) < EPSILON;
+}
 
 Sensor init_sensor(int id, double threshold) {
     Sensor sensor;
@@ -81,6 +97,43 @@ void print_detection_interval(const Sensor *p_sensor) {
     }
 }
 
+void print_fused_intervals(const Sensor *p_sensor_1, const Sensor *p_sensor_2) {
+    for (int i = 1; i < DATA_SIZE; i++) {
+        int current_detection_1 = p_sensor_1->object_detection[i];
+        int current_detection_2 = p_sensor_2-> object_detection[i];
+        int last_detection_1 = p_sensor_1->object_detection[i - 1];
+        int last_detection_2 = p_sensor_2->object_detection[i - 1];
+
+        float current_time = p_sensor_1->data[i].time;
+        float last_time = p_sensor_1->data[i - 1].time;
+
+        if (!float_eq(current_time, p_sensor_2->data[i].time)) {
+            printf("Sensor 1 and Sensor 2 times don't line up.\n");
+            printf("Unsupported operation\n");
+            exit(1);
+        }
+
+        int current_detection = current_detection_1 && current_detection_2;
+        int last_detection = last_detection_1 && last_detection_2;
+
+        // Edge case: When the last measurement is still above threshold, we
+        // still need to print an "End" message as we do on falling edge.
+        int is_last_and_active = i == DATA_SIZE-1 && current_detection;
+
+        // trigger on rising edge
+        if (!last_detection && current_detection) {
+            printf("Start: %.2f s ", current_time);
+        }
+        // trigger on falling edge
+        else if (last_detection && !current_detection) {
+            printf("End: %.2f s ", last_time);
+        }
+        else if (is_last_and_active) {
+            printf("End: %.2f s ", current_time);
+        }
+    }
+}
+
 void print_results(const Sensor *p_sensor_1, const Sensor *p_sensor_2) {
     // sensor 1 detections
     printf("Sensor 1 detections: ");
@@ -91,6 +144,10 @@ void print_results(const Sensor *p_sensor_1, const Sensor *p_sensor_2) {
     printf("Sensor 2 detections: ");
     print_detection_interval(p_sensor_2);
     printf("\n\n");
+
+    printf("Fused sensor detections: ");
+    print_fused_intervals(p_sensor_1, p_sensor_2);
+    printf("\n");
 }
 
 int main(void) {
