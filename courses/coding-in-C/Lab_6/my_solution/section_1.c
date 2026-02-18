@@ -1,10 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define INPUT_PATH "input.txt"
 #define OUTPUT_PATH "output.txt"
 
 void test_reading(void) {
-    FILE *f = fopen(INPUT_PATH);
+    FILE *f = fopen(INPUT_PATH, "r");
     if (f == NULL) {
         printf("Failed to open %s\n", INPUT_PATH);
         exit(1);
@@ -13,15 +14,18 @@ void test_reading(void) {
     printf("first fgetc(): %c\n", fgetc(f));
     printf("second fgetc(): %c\n", fgetc(f));
 
-    printf("fgets(): %s\n", fgets(f));
+    char buffer[256];
+    fgets(buffer, sizeof(buffer), f);
+    printf("fgets(): %s\n", buffer);
 
-    printf("fscanf(): %s\n", fscanf(f, "%s"));
+    fscanf(f, "%s\n", buffer);
+    printf("fscanf(): %s\n", buffer);
 
     fclose(f);
 }
 
 void test_writing(void) {
-    FILE *f = fopen(OUTPUT_PATH);
+    FILE *f = fopen(OUTPUT_PATH, "w");
 
     fclose(f);
 }
