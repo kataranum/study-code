@@ -55,6 +55,44 @@ bool read_sensor(Sensor *p_sensor, const char *path) {
     return true;
 }
 
+void print_results(const Sensor *p_sensor_1, const Sensor *p_sensor_2) {
+    // sensor 1 detections
+    printf("Sensor 1 detections: ");
+    for (int i = 1; i < DATA_SIZE; i++) {
+        int current_detection = p_sensor_1->object_detection[i];
+        int last_detection    = p_sensor_1->object_detection[i - 1];
+        float time = p_sensor_1->data[i].time;
+
+        // trigger on rising edge
+        if (!last_detection && current_detection) {
+            printf("Start: %.2f s ", time);
+        }
+        // trigger on falling edge
+        else if (last_detection && !current_detection) {
+            printf("End: %.2f s ", time);
+        }
+    }
+    printf("\n\n");
+
+    // sensor 2 detections
+    printf("Sensor 2 detections: ");
+    for (int i = 1; i < DATA_SIZE; i++) {
+        int current_detection = p_sensor_2->object_detection[i];
+        int last_detection    = p_sensor_2->object_detection[i - 1];
+        float time = p_sensor_2->data[i].time;
+
+        // trigger on rising edge
+        if (!last_detection && current_detection) {
+            printf("Start: %.2f s ", time);
+        }
+        // trigger on falling edge
+        else if (last_detection && !current_detection) {
+            printf("End: %.2f s ", time);
+        }
+    }
+    printf("\n\n");
+}
+
 int main(void) {
     Sensor sensor_1 = init_sensor(1, 0.8);
     Sensor sensor_2 = init_sensor(2, 0.7);
@@ -62,12 +100,7 @@ int main(void) {
     read_sensor(&sensor_1, "../sensor1.txt");
     read_sensor(&sensor_2, "../sensor2.txt");
 
-    // debug print first 10 elements
-    for (int i = 0; i < 10; i++) {
-        printf("Sensor 1 data[%d] = %f; %f\n", i, sensor_1.data[i].time, sensor_1.data[i].probability);
-        printf("Sensor 2 data[%d] = %f; %f\n", i, sensor_2.data[i].time, sensor_2.data[i].probability);
-        printf("\n");
-    }
+    print_results(&sensor_1, &sensor_2);
     
     return 0;
 }
