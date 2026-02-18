@@ -63,6 +63,10 @@ void print_detection_interval(const Sensor *p_sensor) {
         float current_time = p_sensor->data[i].time;
         float last_time = p_sensor->data[i - 1].time;
 
+        // Edge case: When the last measurement is still above threshold, we
+        // still need to print an "End" message as we do on falling edge.
+        int is_last_and_active = i == DATA_SIZE-1 && current_detection;
+
         // trigger on rising edge
         if (!last_detection && current_detection) {
             printf("Start: %.2f s ", current_time);
@@ -70,6 +74,9 @@ void print_detection_interval(const Sensor *p_sensor) {
         // trigger on falling edge
         else if (last_detection && !current_detection) {
             printf("End: %.2f s ", last_time);
+        }
+        else if (is_last_and_active) {
+            printf("End: %.2f s ", current_time);
         }
     }
 }
