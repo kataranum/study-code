@@ -5,6 +5,17 @@
 
 void test_reading(void) {
     FILE *f = fopen(INPUT_PATH);
+    if (f == NULL) {
+        printf("Failed to open %s\n", INPUT_PATH);
+        exit(1);
+    }
+
+    printf("first fgetc(): %c\n", fgetc(f));
+    printf("second fgetc(): %c\n", fgetc(f));
+
+    printf("fgets(): %s\n", fgets(f));
+
+    printf("fscanf(): %s\n", fscanf(f, "%s"));
 
     fclose(f);
 }
