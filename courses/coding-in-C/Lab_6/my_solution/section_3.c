@@ -47,7 +47,7 @@ Sensor init_sensor(int id, double threshold) {
     return sensor;
 }
 
-bool read_sensor(Sensor *p_sensor, const char *path) {
+void read_sensor(Sensor *p_sensor, const char *path) {
     FILE *f = fopen(path, "r");
 
     for (int i = 0; i < DATA_SIZE; i++) {
@@ -68,7 +68,6 @@ bool read_sensor(Sensor *p_sensor, const char *path) {
     }
 
     fclose(f);
-    return true;
 }
 
 void print_edge_detections(
