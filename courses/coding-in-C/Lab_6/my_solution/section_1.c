@@ -28,6 +28,17 @@ void test_reading(void) {
 
 void test_writing(void) {
     FILE *f = fopen(OUTPUT_PATH, "w");
+    if (f == NULL) {
+        printf("Failed to open %s\n", OUTPUT_PATH);
+        exit(1);
+    }
+
+    fputc('a', f);
+    fputc('b', f);
+
+    fputs("\nhello I am computer\n", f);
+
+    fprintf(f, "The number is %d and the other numer is %d\n", -5, 7);
 
     fclose(f);
 }
