@@ -9,6 +9,7 @@ typedef struct {
 
 int refuel(Car *p_car, float amount) {
     if (p_car->fuel_level + amount > p_car->max_fuel_level) {
+        printf("Refueling too much\n");
         return 0;
     }
 
@@ -29,8 +30,15 @@ Car init_car(float fuel_level, float max_fuel_level, const char *str_model) {
 int main(void) {
     Car car = init_car(10.0, 50.0, "Hyundai i10");
 
+    printf("Initial fuel level: %f\n", car.fuel_level);
+
+    printf("Filling 30 litres\n");
     refuel(&car, 30.0);
+    printf("Fuel level is now %f\n", car.fuel_level);
+
+    printf("Filling 50 litres\n");
     refuel(&car, 50.0);
+    printf("Fuel level is now %f\n", car.fuel_level);
 
     return 0;
 }
