@@ -59,15 +59,17 @@ void print_detection_interval(const Sensor *p_sensor) {
     for (int i = 1; i < DATA_SIZE; i++) {
         int current_detection = p_sensor->object_detection[i];
         int last_detection    = p_sensor->object_detection[i - 1];
-        float time = p_sensor->data[i].time;
+
+        float current_time = p_sensor->data[i].time;
+        float last_time = p_sensor->data[i - 1].time;
 
         // trigger on rising edge
         if (!last_detection && current_detection) {
-            printf("Start: %.2f s ", time);
+            printf("Start: %.2f s ", current_time);
         }
         // trigger on falling edge
         else if (last_detection && !current_detection) {
-            printf("End: %.2f s ", time);
+            printf("End: %.2f s ", last_time);
         }
     }
 }
