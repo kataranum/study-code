@@ -205,7 +205,7 @@ void print_fused_intervals(const Sensor *p_sensor_1, const Sensor *p_sensor_2) {
 
     for (int i = 0; i < DATA_SIZE; i++) {
         int current_detection_1 = p_sensor_1->object_detection[i];
-        int current_detection_2 = p_sensor_2-> object_detection[i];
+        int current_detection_2 = p_sensor_2->object_detection[i];
         int current_detection = current_detection_1 && current_detection_2;
 
         float current_time = p_sensor_1->data[i].time;
