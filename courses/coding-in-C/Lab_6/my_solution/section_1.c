@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define INPUT_PATH "input.txt"
-#define OUTPUT_PATH "output.txt"
+#define INPUT_PATH "section_1/input.txt"
+#define OUTPUT_PATH "section_1/output.txt"
 
 void test_reading(void) {
     FILE *f = fopen(INPUT_PATH, "r");
