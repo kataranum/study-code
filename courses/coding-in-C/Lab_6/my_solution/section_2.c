@@ -2,9 +2,9 @@
 #include <string.h>
 
 typedef struct {
-    float fuel_level,
-    float max_fuel_level,
-    char model[256],
+    float fuel_level;
+    float max_fuel_level;
+    char model[256];
 } Car;
 
 int refuel(Car *p_car, float amount) {
@@ -21,7 +21,7 @@ Car init_car(float fuel_level, float max_fuel_level, const char *str_model) {
 
     car.fuel_level = fuel_level;
     car.max_fuel_level = max_fuel_level;
-    strncpy(str_model, car.model, sizeof(car.model));
+    strncpy(car.model, str_model, sizeof(car.model));
 
     return car;
 }
