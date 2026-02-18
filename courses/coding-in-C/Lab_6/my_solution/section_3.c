@@ -92,7 +92,7 @@ Sensor init_sensor(int id, double threshold) {
  * Sensor data is set to the appropate values, and Sensor.object_detection will
  * be `true` if sensor probability is above sensor threshold.
  *
- * Will leave part of sensor data uninitialized if the sensor file has less than
+ * Will leave part of sensor data untouched if the sensor file has less than
  * `DATA_LEN` lines.
  *
  * @param[out] p_sensor Sensor to write values into
