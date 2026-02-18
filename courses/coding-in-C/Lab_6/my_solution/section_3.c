@@ -71,7 +71,7 @@ bool read_sensor(Sensor *p_sensor, const char *path) {
     return true;
 }
 
-void print_detection_interval(const Sensor *p_sensor) {
+void print_detection_intervals(const Sensor *p_sensor) {
     for (int i = 1; i < DATA_SIZE; i++) {
         int current_detection = p_sensor->object_detection[i];
         int last_detection    = p_sensor->object_detection[i - 1];
@@ -137,12 +137,12 @@ void print_fused_intervals(const Sensor *p_sensor_1, const Sensor *p_sensor_2) {
 void print_results(const Sensor *p_sensor_1, const Sensor *p_sensor_2) {
     // sensor 1 detections
     printf("Sensor 1 detections: ");
-    print_detection_interval(p_sensor_1);
+    print_detection_intervals(p_sensor_1);
     printf("\n\n");
 
     // sensor 2 detections
     printf("Sensor 2 detections: ");
-    print_detection_interval(p_sensor_2);
+    print_detection_intervals(p_sensor_2);
     printf("\n\n");
 
     printf("Fused sensor detections: ");
