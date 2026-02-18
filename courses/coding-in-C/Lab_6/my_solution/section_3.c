@@ -34,9 +34,7 @@ Sensor init_sensor(int id, double threshold) {
 bool read_sensor(Sensor *p_sensor, const char *path) {
     FILE *f = fopen(path, "r");
 
-    SensorData *p_data = p_sensor->data;
-
-    while (true) {
+    for (int i = 0; i < DATA_SIZE; i++) {
         float seconds, measurement;
 
         int res = fscanf(f, "%f %f\n", &seconds, &measurement);
@@ -45,10 +43,8 @@ bool read_sensor(Sensor *p_sensor, const char *path) {
             break;
         }
 
-        p_data->time = seconds;
-        p_data->probability = measurement;
-
-        p_data++;
+        p_sensor->data[i].time = seconds;
+        p_sensor->data[i].probability = measurement;
     }
 
     fclose(f);
