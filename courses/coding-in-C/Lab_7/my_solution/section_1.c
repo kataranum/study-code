@@ -38,6 +38,20 @@ int* calculate_squares(int amount) {
     return p_squares;
 }
 
+int* expand_squares(int *p_squares, int old_size, int extend_amount) {
+    int new_size = old_size + extend_amount;
+    int *p_new = realloc(p_squares, new_size);
+    if (p_new == NULL) {
+        return NULL;
+    }
+
+    for (int i = old_size; i < new_size; i++) {
+        p_squares[i] = i*i;
+    }
+
+    return p_new;
+}
+
 int main(void) {
     printf("Please input n: ");
     int n = user_input_n();
@@ -45,8 +59,15 @@ int main(void) {
     int *p_n = malloc(sizeof(int));
     *p_n = n;
 
-    int *p_squares = calculate_squares(3);
-        
+    int *p_squares = calculate_squares(n);
+    int *p_tmp = expand_squares(p_squares, n, 2*n);
+
+    if (p_tmp == NULL) {
+        printf("Realloc failure.\n");
+        return 3;
+    }
+
+    p_squares = p_tmp;
 
     free(p_squares);
     free(p_n);
