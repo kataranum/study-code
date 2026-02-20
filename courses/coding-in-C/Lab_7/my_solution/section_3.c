@@ -77,6 +77,18 @@ void delete_firstSong(Playlist *p_playlist) {
     p_playlist->p_first = p_second;
 }
 
+void delete_playlist(Playlist *p_playlist) {
+    Song *p_song = p_playlist->p_first;
+
+    while (p_song != NULL) {
+        Song *p_next = p_song->p_next;
+        delete_song(p_next);
+        p_song = p_next;
+    }
+
+    p_playlist->p_first = NULL;
+}
+
 int main(void) {
     return 0;
 }
