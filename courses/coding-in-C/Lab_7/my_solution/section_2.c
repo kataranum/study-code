@@ -6,6 +6,14 @@ struct Node {
     struct Node *p_next;
 } typedef Node;
 
+Node ll_empty(void) {
+    Node node;
+    node.value = 0.0;
+    node.p_next = NULL;
+
+    return node;
+}
+
 Node* ll_find_tail(Node *p_node) {
     while (1) {
         if (p_node->p_next == NULL) {
@@ -29,5 +37,11 @@ Node* ll_append(double value, Node *p_head) {
 }
 
 int main(void) {
+    Node head = ll_empty();
+
+    for (int i = 0; i < 50; i++) {
+        ll_append((double) i, &head);
+    }
+
     return 0;
 }
