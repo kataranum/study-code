@@ -53,7 +53,6 @@ int* expand_squares(int *p_squares, int old_size, int extend_amount) {
 }
 
 int main(void) {
-    printf("Please input n: ");
     int n = user_input_n();
 
     int *p_n = malloc(sizeof(int));
