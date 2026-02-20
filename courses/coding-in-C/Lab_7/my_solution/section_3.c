@@ -49,6 +49,18 @@ void add_song(Playlist *p_playlist, const char *str_title, const char *str_artis
     p_last->p_next = p_new;
 }
 
+void print_playlist(Playlist playlist) {
+    Song *p_song = playlist.p_first;
+
+    while (p_song != NULL) {
+        printf("\"%s\"\n", p_song->p_title);
+        printf("from %s\n", p_song->p_artist);
+        printf("\n");
+
+        p_song = p_song->p_next;
+    }
+}
+
 int main(void) {
     return 0;
 }
