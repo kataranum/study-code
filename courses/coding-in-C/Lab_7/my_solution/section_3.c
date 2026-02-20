@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct {
+typedef struct Song {
     char *p_title;
     char *p_artist;
     struct Song *p_next;
-} typedef Song;
+} Song;
 
 typedef struct {
     Song *p_first;
