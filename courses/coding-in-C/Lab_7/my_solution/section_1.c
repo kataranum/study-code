@@ -30,6 +30,11 @@ int user_input_n(void) {
 
 int main(void) {
     printf("Please input n: ");
+    int n = user_input_n();
 
+    int *p_n = malloc(sizeof(int));
+    *p_n = n;
+
+    free(p_n);
     return 0;
 }
