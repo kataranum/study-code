@@ -21,20 +21,27 @@ Playlist init_playlist(void) {
 
 void add_song(Playlist *p_playlist, const char *str_title, const char *str_artist) {
     char *p_title = malloc(strlen(str_title) + 1);
-    strncpy(p_title, str_title, strlen(str_title));
-
-    char *p_artist = malloc(strlen(str_artist) + 1);
-    strncpy(p_artist, str_artist, strlen(str_artist));
-
-    Song *p_new = malloc(sizeof(Song));
-    p_new->p_title = p_title;
-    p_new->p_artist = p_artist;
-    p_new->p_next = NULL;
-
-    if (!p_title || !p_artist || !p_new) {
+    if (p_title == NULL) {
         printf("malloc failure\n");
         exit(1);
     }
+    strncpy(p_title, str_title, strlen(str_title));
+
+    char *p_artist = malloc(strlen(str_artist) + 1);
+    if (p_artist == NULL) {
+        printf("malloc failure\n");
+        exit(1);
+    }
+    strncpy(p_artist, str_artist, strlen(str_artist));
+
+    Song *p_new = malloc(sizeof(Song));
+    if (p_new == NULL) {
+        printf("malloc failure\n");
+        exit(1);
+    }
+    p_new->p_title = p_title;
+    p_new->p_artist = p_artist;
+    p_new->p_next = NULL;
 
     if (p_playlist->p_first == NULL) {
         p_playlist->p_first = p_new;
