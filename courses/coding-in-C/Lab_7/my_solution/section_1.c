@@ -28,6 +28,16 @@ int user_input_n(void) {
     return value;
 }
 
+int* calculate_squares(int amount) {
+    int *p_squares = calloc(sizeof(int), amount);
+
+    for (int i = 0; i < amount; i++) {
+        p_squares[i] = i*i;
+    }
+
+    return p_squares;
+}
+
 int main(void) {
     printf("Please input n: ");
     int n = user_input_n();
@@ -35,6 +45,10 @@ int main(void) {
     int *p_n = malloc(sizeof(int));
     *p_n = n;
 
+    int *p_squares = calculate_squares(3);
+        
+
+    free(p_squares);
     free(p_n);
     return 0;
 }
