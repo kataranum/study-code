@@ -96,6 +96,7 @@ int main(void) {
     add_song(&playlist, "Esperanto", "Max Herre");
     print_playlist(playlist);
 
+    printf("After deletion:\n");
     delete_firstSong(&playlist);
     print_playlist(playlist);
 
