@@ -61,6 +61,22 @@ void print_playlist(Playlist playlist) {
     }
 }
 
+void delete_song(Song *p_song) {
+    free(p_song->p_title);
+    free(p_song->p_artist);
+    free(p_song);
+}
+
+void delete_firstSong(Playlist *p_playlist) {
+    if (p_playlist->p_first == NULL) {
+        return;
+    }
+
+    Song *p_second = p_playlist->p_first->p_next;
+    delete_song(p_playlist->p_first);
+    p_playlist->p_first = p_second;
+}
+
 int main(void) {
     return 0;
 }
