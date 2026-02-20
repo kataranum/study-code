@@ -16,6 +16,14 @@ Node ll_empty(void) {
     return node;
 }
 
+Node* ll_alloc_new(double value, Node* p_next) {
+    Node *p_node = malloc(sizeof(Node));
+    p_node->value = value;
+    p_node->p_next = p_next;
+
+    return p_node;
+}
+
 Node* ll_find_tail(Node *p_node) {
     while (1) {
         if (p_node->p_next == NULL) {
@@ -36,6 +44,23 @@ Node* ll_append(double value, Node *p_head) {
     p_tail->p_next = p_new;
 
     return p_new;
+}
+
+int ll_insert_at_index(Node *p_node, int index, double value) {
+    for (int i = 0; i < index-1; i++) {
+        if (p_node->p_next == NULL) {
+            return 0;
+        }
+
+        p_node = p_node->p_next;
+    }
+
+    Node *p_next = p_node->p_next;
+
+    Node *p_new = ll_alloc_new(value, p_next);
+    p_node->p_next = p_new;
+
+    return 1;
 }
 
 void fill_array_rnd(int *p_arr, int size) {
@@ -65,6 +90,7 @@ int main(void) {
     int arr[51] = { 0 };
     fill_array_rnd(arr, 50);
     insert_array(arr, 50, 3, int_rnd);
+    ll_insert_at_index(&head, 3, int_rnd);
 
     return 0;
 }
