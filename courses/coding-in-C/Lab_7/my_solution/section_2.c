@@ -63,6 +63,15 @@ int ll_insert_at_index(Node *p_node, int index, double value) {
     return 1;
 }
 
+void ll_print_all(Node *p_node) {
+    printf("Linked list:\n");
+    int i = 0;
+    while (p_node->p_next != NULL) {
+        printf("Node[%d] = %f\n", i++, p_node->value);
+        p_node = p_node->p_next;
+    }
+}
+
 void fill_array_rnd(int *p_arr, int size) {
     srand(time(NULL));
 
@@ -78,6 +87,13 @@ void insert_array(int *p_arr, int size, int index, int value) {
     p_arr[index] = value;
 }
 
+void print_array(int *p_arr, int size) {
+    printf("Array:\n");
+    for (int i = 0; i < size; i++) {
+        printf("[%d] = %d\n", i, p_arr[i]);
+    }
+}
+
 int main(void) {
     Node head = ll_empty();
 
@@ -91,6 +107,9 @@ int main(void) {
     fill_array_rnd(arr, 50);
     insert_array(arr, 50, 3, int_rnd);
     ll_insert_at_index(&head, 3, int_rnd);
+
+    print_array(arr, 51);
+    ll_print_all(&head);
 
     return 0;
 }
