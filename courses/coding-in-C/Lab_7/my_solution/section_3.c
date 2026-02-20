@@ -12,6 +12,17 @@ typedef struct {
     Song *p_first;
 } Playlist;
 
+char* alloc_string(const char *str) {
+    char *ptr = malloc(strlen(str) + 1);
+    if (ptr == NULL) {
+        printf("malloc failure\n");
+        exit(1);
+    }
+
+    strncpy(ptr, str, strlen(str));
+    return ptr;
+}
+
 Playlist init_playlist(void) {
     Playlist playlist;
     playlist.p_first = NULL;
@@ -20,19 +31,8 @@ Playlist init_playlist(void) {
 }
 
 void add_song(Playlist *p_playlist, const char *str_title, const char *str_artist) {
-    char *p_title = malloc(strlen(str_title) + 1);
-    if (p_title == NULL) {
-        printf("malloc failure\n");
-        exit(1);
-    }
-    strncpy(p_title, str_title, strlen(str_title));
-
-    char *p_artist = malloc(strlen(str_artist) + 1);
-    if (p_artist == NULL) {
-        printf("malloc failure\n");
-        exit(1);
-    }
-    strncpy(p_artist, str_artist, strlen(str_artist));
+    char *p_title = alloc_string(str_title);
+    char *p_artist = alloc_string(str_artist);
 
     Song *p_new = malloc(sizeof(Song));
     if (p_new == NULL) {
