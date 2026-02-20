@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 struct Node {
     double value;
@@ -45,6 +46,13 @@ void fill_array_rnd(int *p_arr, int size) {
     }
 }
 
+void insert_array(int *p_arr, int size, int index, int value) {
+    // copy p_arr[index .. index+size] to p_arr[index+1 .. index+size+1]
+    // effectively moving the latter part 1 position to the right.
+    memcpy(p_arr + index + 1, p_arr + index, size - index);
+    p_arr[index] = value;
+}
+
 int main(void) {
     Node head = ll_empty();
 
@@ -52,8 +60,11 @@ int main(void) {
         ll_append((double) i, &head);
     }
 
+    int int_rnd = rand();
+
     int arr[51] = { 0 };
     fill_array_rnd(arr, 50);
+    insert_array(arr, 50, 3, int_rnd);
 
     return 0;
 }
