@@ -29,7 +29,7 @@ int user_input_n(void) {
 }
 
 int* calculate_squares(int amount) {
-    int *p_squares = calloc(sizeof(int), amount);
+    int *p_squares = calloc(amount, sizeof(int));
 
     for (int i = 0; i < amount; i++) {
         p_squares[i] = i*i;
@@ -40,7 +40,7 @@ int* calculate_squares(int amount) {
 
 int* expand_squares(int *p_squares, int old_size, int extend_amount) {
     int new_size = old_size + extend_amount;
-    int *p_new = realloc(p_squares, new_size);
+    int *p_new = realloc(p_squares, new_size * sizeof(int));
     if (p_new == NULL) {
         return NULL;
     }
