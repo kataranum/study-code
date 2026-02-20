@@ -58,8 +58,8 @@ int main(void) {
     int *p_n = malloc(sizeof(int));
     *p_n = n;
 
-    int *p_squares = calculate_squares(n);
-    int *p_tmp = expand_squares(p_squares, n, 2*n);
+    int *p_squares = calculate_squares(*p_n);
+    int *p_tmp = expand_squares(p_squares, *p_n, 2 * *p_n);
 
     if (p_tmp == NULL) {
         printf("Realloc failure.\n");
@@ -68,7 +68,7 @@ int main(void) {
 
     p_squares = p_tmp;
 
-    for (int i = 0; i < 2*n; i++) {
+    for (int i = 0; i < 2 * *p_n; i++) {
         printf("Squares[%d] = %d\n", i, p_squares[i]);
     }
 
