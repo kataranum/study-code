@@ -8,14 +8,6 @@ struct Node {
     struct Node *p_next;
 } typedef Node;
 
-Node ll_empty(void) {
-    Node node;
-    node.value = 0.0;
-    node.p_next = NULL;
-
-    return node;
-}
-
 Node* ll_alloc_new(double value, Node* p_next) {
     Node *p_node = malloc(sizeof(Node));
     p_node->value = value;
@@ -72,6 +64,16 @@ void ll_print_all(Node *p_node) {
     }
 }
 
+void ll_delete(Node *p_head) {
+    Node *p_next = p_head->p_next;
+
+    while (p_next != NULL) {
+        free(p_head);
+        p_head = p_next;
+        p_next = p_head->p_next;
+    }
+}
+
 void fill_array_rnd(int *p_arr, int size) {
     srand(time(NULL));
 
@@ -98,10 +100,10 @@ void print_array(int *p_arr, int size) {
 }
 
 int main(void) {
-    Node head = ll_empty();
+    Node *p_head = ll_alloc_new(0.0, NULL);
 
     for (int i = 0; i < 50; i++) {
-        ll_append((double) i+1, &head);
+        ll_append((double) i+1, p_head);
     }
 
     int int_rnd = rand();
@@ -109,10 +111,13 @@ int main(void) {
     int arr[51] = { 0 };
     fill_array_rnd(arr, 50);
     insert_array(arr, 50, 3, int_rnd);
-    ll_insert_at_index(&head, 3, int_rnd);
+    ll_insert_at_index(p_head, 3, int_rnd);
 
     print_array(arr, 51);
-    ll_print_all(&head);
+    ll_print_all(p_head);
+
+    ll_delete(p_head);
+    p_head = NULL;
 
     return 0;
 }
