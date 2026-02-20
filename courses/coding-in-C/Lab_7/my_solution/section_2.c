@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 struct Node {
     double value;
@@ -36,12 +37,23 @@ Node* ll_append(double value, Node *p_head) {
     return p_new;
 }
 
+void fill_array_rnd(int *p_arr, int size) {
+    srand(time(NULL));
+
+    for (int i = 0; i < size; i++) {
+        p_arr[i] = rand();
+    }
+}
+
 int main(void) {
     Node head = ll_empty();
 
     for (int i = 0; i < 50; i++) {
         ll_append((double) i, &head);
     }
+
+    int arr[51] = { 0 };
+    fill_array_rnd(arr, 50);
 
     return 0;
 }
