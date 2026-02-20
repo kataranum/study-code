@@ -119,5 +119,31 @@ int main(void) {
     ll_delete(p_head);
     p_head = NULL;
 
+    // whether linked list or array is faster for insertion depends on the
+    // circumstance, but I'd say on average linked list should be faster.
+
+    // For linked list, the correct node needs to be found first which has O(n)
+    // complexity. Furthermore, the nodes are probably all over the memory so
+    // the CPU suffers more cache misses, which slow things down. Though, when
+    // the node has been found, inserting a new one is a relatively simple
+    // process, the speed bottleneck here probably being the syscall for
+    // allocating more memory.
+
+    // For dynamic arrays (I'll call them vectors), the memory location of the
+    // index to insert is known immediately, as a vector is all in one memory
+    // location. The costly operation is to move all leading items one to the
+    // right to make room for the new element. Though, there is less of a risk
+    // for cache misses like in Linked lists.
+    // Though vectors need to also check if they still have enough allocated
+    // capacity. If they run out, they need to realloc(), which costs additional
+    // time. A realloc also has a chance that the whole array needs to be copied
+    // to a completely different memory location, which again slows down things
+    // a lot. Unfortunately, one cannot predict when or how many times this
+    // would happen.
+
+    // So I'd say generally for inserting things near the end of the list,
+    // vectors should be quicker, and for inserting things in a very large list
+    // or inserting stuff at the beginning, linked lists perform better.
+
     return 0;
 }
