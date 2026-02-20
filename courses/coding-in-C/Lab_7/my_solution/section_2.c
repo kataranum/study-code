@@ -98,7 +98,7 @@ int main(void) {
     Node head = ll_empty();
 
     for (int i = 0; i < 50; i++) {
-        ll_append((double) i, &head);
+        ll_append((double) i+1, &head);
     }
 
     int int_rnd = rand();
