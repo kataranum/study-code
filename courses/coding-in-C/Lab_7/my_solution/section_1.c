@@ -72,6 +72,16 @@ int main(void) {
         printf("Squares[%d] = %d\n", i, p_squares[i]);
     }
 
+    // malloc() vs. calloc()
+    // first difference is that calloc() initialized the reserved
+    // memory with 0s, whereas malloc just leaves whatever data
+    // is in there already.
+    //
+    // second difference is that malloc takes just the amount of
+    // bytes to reserve, calloc takes two arguments one for the
+    // byte size of an individual element, and the second for how
+    // many elements there are.
+
     free(p_squares);
     free(p_n);
     return 0;
