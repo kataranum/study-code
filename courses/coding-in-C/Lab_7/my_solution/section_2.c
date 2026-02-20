@@ -83,7 +83,10 @@ void fill_array_rnd(int *p_arr, int size) {
 void insert_array(int *p_arr, int size, int index, int value) {
     // copy p_arr[index .. index+size] to p_arr[index+1 .. index+size+1]
     // effectively moving the latter part 1 position to the right.
-    memcpy(p_arr + index + 1, p_arr + index, size - index);
+    int *p_src = p_arr + index;
+    int *p_dest = p_src + 1;
+    long n = (size - index) * sizeof(int);
+    memcpy(p_dest, p_src, n);
     p_arr[index] = value;
 }
 
