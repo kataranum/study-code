@@ -90,5 +90,16 @@ void delete_playlist(Playlist *p_playlist) {
 }
 
 int main(void) {
+    Playlist playlist = init_playlist();
+    add_song(&playlist, "Crawling", "Linkin Park");
+    add_song(&playlist, "Layla", "Eric Clapton");
+    add_song(&playlist, "Esperanto", "Max Herre");
+    print_playlist(playlist);
+
+    delete_firstSong(&playlist);
+    print_playlist(playlist);
+
+    delete_playlist(&playlist);
+
     return 0;
 }
