@@ -1,13 +1,24 @@
+/**
+ * @file section_3.c
+ * @brief Lab 7 Section III implementation
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+/**
+ * @brief An entry in the `Playlist` linked list
+ */
 typedef struct Song {
     char *p_title;
     char *p_artist;
     struct Song *p_next;
 } Song;
 
+/**
+ * @brief A linked list of multiple `Song` structs
+ */
 typedef struct {
     Song *p_first;
 } Playlist;
