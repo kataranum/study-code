@@ -82,7 +82,7 @@ void delete_playlist(Playlist *p_playlist) {
 
     while (p_song != NULL) {
         Song *p_next = p_song->p_next;
-        delete_song(p_next);
+        delete_song(p_song);
         p_song = p_next;
     }
 
