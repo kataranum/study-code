@@ -69,6 +69,10 @@ int main(void) {
 
     p_squares = p_tmp;
 
+    for (int i = 0; i < 2*n; i++) {
+        printf("Squares[%d] = %d\n", i, p_squares[i]);
+    }
+
     free(p_squares);
     free(p_n);
     return 0;
