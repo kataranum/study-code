@@ -28,13 +28,13 @@ char* read_line_dynamic() {
     success[len - 1] = '\0';
     len--;
 
-    char *p_str = malloc(sizeof(char) * len);
+    char *p_str = malloc(sizeof(char) * (len + 1));
 
     if (!p_str) {
         return NULL;
     }
 
-    memcpy(p_str, success, sizeof(char) * len);
+    memcpy(p_str, success, sizeof(char) * (len + 1));
 
     return p_str;
 }
