@@ -3,6 +3,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+// -------------------
+//  PRIVATE FUNCTIONS
+// -------------------
+
 /**
  * @brief Allocate a new string on the heap
  * 
@@ -19,6 +23,25 @@ char* alloc_string(const char *str) {
     strncpy(ptr, str, strlen(str));
     return ptr;
 }
+
+/**
+ * @brief Free memory of an allocated `Song` struct
+ *
+ * WARNING: `Song` is supposed to be a part of a linked list, this function does
+ * not alter anything of this list, so just calling this function on a list
+ * entry will mess up the list.
+ * 
+ * @param p_song Pointer to `Song` to delete
+ */
+void delete_song(Song *p_song) {
+    free(p_song->p_title);
+    free(p_song->p_artist);
+    free(p_song);
+}
+
+// ------------------
+//  PUBLIC FUNCTIONS
+// ------------------
 
 Playlist init_playlist(void) {
     Playlist playlist;
@@ -61,21 +84,6 @@ void print_playlist(Playlist playlist) {
 
         p_song = p_song->p_next;
     }
-}
-
-/**
- * @brief Free memory of an allocated `Song` struct
- *
- * WARNING: `Song` is supposed to be a part of a linked list, this function does
- * not alter anything of this list, so just calling this function on a list
- * entry will mess up the list.
- * 
- * @param p_song Pointer to `Song` to delete
- */
-void delete_song(Song *p_song) {
-    free(p_song->p_title);
-    free(p_song->p_artist);
-    free(p_song);
 }
 
 void delete_firstSong(Playlist *p_playlist) {
