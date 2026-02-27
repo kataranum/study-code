@@ -53,7 +53,6 @@ void test_delete_firstSong(void)
     add_song(&p, "2", "artist2");
 
     Song *p_song = p.p_first;
-    printf("p_song title: '%s'\n", p_song->p_title);
     assert(strcmp(p_song->p_title, "1") == 0);
 
     delete_firstSong(&p);
