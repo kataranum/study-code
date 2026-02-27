@@ -1,6 +1,8 @@
 #ifndef PLAYLIST_H
 #define PLAYLIST_H
 
+#define MAX_SONGS 999
+
 /**
  * @brief An entry in the `Playlist` linked list
  */
