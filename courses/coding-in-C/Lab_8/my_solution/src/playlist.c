@@ -20,11 +20,6 @@ char* alloc_string(const char *str) {
     return ptr;
 }
 
-/**
- * @brief Create a new empty playlist
- * 
- * @return New empty playlist
- */
 Playlist init_playlist(void) {
     Playlist playlist;
     playlist.p_first = NULL;
@@ -32,13 +27,6 @@ Playlist init_playlist(void) {
     return playlist;
 }
 
-/**
- * @brief Add a new song with the given attributes to the end of `Playlist`
- * 
- * @param p_playlist Playlist to append to
- * @param str_title  Title of new song
- * @param str_artist Artist of new song
- */
 void add_song(Playlist *p_playlist, const char *str_title, const char *str_artist) {
     char *p_title = alloc_string(str_title);
     char *p_artist = alloc_string(str_artist);
@@ -65,11 +53,6 @@ void add_song(Playlist *p_playlist, const char *str_title, const char *str_artis
     p_last->p_next = p_new;
 }
 
-/**
- * @brief Print all entries of playlist
- * 
- * @param playlist Playlist to print
- */
 void print_playlist(Playlist playlist) {
     Song *p_song = playlist.p_first;
 
@@ -95,11 +78,6 @@ void delete_song(Song *p_song) {
     free(p_song);
 }
 
-/**
- * @brief Delete the first song of the given playlist
- * 
- * @param p_playlist Given playlist
- */
 void delete_firstSong(Playlist *p_playlist) {
     if (p_playlist->p_first == NULL) {
         return;
@@ -110,11 +88,6 @@ void delete_firstSong(Playlist *p_playlist) {
     p_playlist->p_first = p_second;
 }
 
-/**
- * @brief Delete all entries of the given playlist
- * 
- * @param p_playlist Given playlist
- */
 void delete_playlist(Playlist *p_playlist) {
     Song *p_song = p_playlist->p_first;
 
