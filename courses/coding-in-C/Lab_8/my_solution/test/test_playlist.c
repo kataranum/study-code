@@ -76,6 +76,21 @@ void test_delete_firstSong(void)
     printf("test_delete_firstSong() passed\n");
 }
 
+void test_delete_firstSong_empty(void)
+{
+    Playlist p = init_playlist();
+
+    // "Delete" first song in an empty playlist
+    delete_firstSong(&p);
+
+    assert(p.p_first == NULL);
+    assert(p.length == 0);
+
+    delete_playlist(&p);
+
+    printf("test_delete_firstSong_empty() passed\n");
+}
+
 /* === Test-Runner === */
 
 int main(void)
@@ -83,7 +98,7 @@ int main(void)
     test_init_playlist();
     test_add_song();
     test_delete_firstSong();
-    //test_delete_firstSong_empty(); // what happens if we delete first song from empty playlist
+    test_delete_firstSong_empty(); // what happens if we delete first song from empty playlist
     //test_delete_playlist();
     //test_max_songs_limit(); // verify if the limit will be not be surpassed
 
