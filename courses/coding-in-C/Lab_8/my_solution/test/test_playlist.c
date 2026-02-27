@@ -13,6 +13,8 @@ void test_init_playlist(void)
     assert(p.p_first == NULL);
     assert(p.length == 0);
 
+    delete_playlist(&p);
+
     printf("test_init_playlist() passed\n");
 }
 
@@ -37,6 +39,8 @@ void test_add_song(void)
     assert(strcmp(p_song->p_artist, "") == 0);
 
     assert(p_song->p_next == NULL);
+
+    delete_playlist(&p);
 
     printf("test_add_song() passed\n");
 }
