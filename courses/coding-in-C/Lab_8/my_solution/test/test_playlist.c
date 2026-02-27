@@ -110,6 +110,48 @@ void test_delete_playlist(void)
     printf("test_delete_playlist() passed\n");
 }
 
+void test_max_songs_limit() {
+    Playlist p = init_playlist();
+
+    // Fill playlist to max
+    for (int i = 0; i < MAX_SONGS; i++) {
+        char str_title[16];
+        char str_artist[16];
+
+        sprintf(str_title, "song %d", i);
+        sprintf(str_artist, "artist %d", i);
+
+        add_song(&p, str_title, str_artist);
+    }
+
+    // store expected title and artist of last song
+    char expected_title[16];
+    char expected_artist[16];
+
+    sprintf(expected_title, "song %d", MAX_SONGS - 1);
+    sprintf(expected_artist, "artist %d", MAX_SONGS - 1);
+
+    // find last song
+    Song *p_last = p.p_first;
+    while (p_last->p_next != NULL) {
+        p_last = p_last->p_next;
+    }
+
+    // do assertions
+    assert(strcmp(p_last->p_title, expected_title) == 0);
+    assert(strcmp(p_last->p_artist, expected_artist) == 0);
+    assert(p.length == MAX_SONGS);
+
+    // try adding another song, shouldn't add
+    add_song(&p, "unnecessary song", "i really don't want to be here");
+    assert(p_last->p_next == NULL);
+    assert(p.length == MAX_SONGS);
+
+    delete_playlist(&p);
+
+    printf("test_max_songs_limit() passed\n");
+}
+
 /* === Test-Runner === */
 
 int main(void)
@@ -119,7 +161,7 @@ int main(void)
     test_delete_firstSong();
     test_delete_firstSong_empty(); // what happens if we delete first song from empty playlist
     test_delete_playlist();
-    //test_max_songs_limit(); // verify if the limit will be not be surpassed
+    test_max_songs_limit(); // verify if the limit will be not be surpassed
 
     printf("Alle Playlist-Tests erfolgreich bestanden.\n");
     return 0;
