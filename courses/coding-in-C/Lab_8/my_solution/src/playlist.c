@@ -20,7 +20,7 @@ char* alloc_string(const char *str) {
         exit(1);
     }
 
-    strncpy(ptr, str, strlen(str));
+    strcpy(ptr, str);
     return ptr;
 }
 
