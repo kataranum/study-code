@@ -12,6 +12,33 @@ void test_init_playlist(void)
 
     assert(p.p_first == NULL);
     assert(p.length == 0);
+
+    printf("test_init_playlist() passed\n");
+}
+
+void test_add_song(void)
+{
+    Playlist p = init_playlist();
+
+    add_song(&p, "Song title", "Song artist");
+    add_song(&p, "Amazing\nMulti\nSong\n", "Amazing\nPerson");
+    add_song(&p, "", "");
+
+    Song *p_song = p.p_first;
+    assert(strcmp(p_song->p_title, "Song title") == 0);
+    assert(strcmp(p_song->p_artist, "Song artist") == 0);
+
+    p_song = p_song->p_next;
+    assert(strcmp(p_song->p_title, "Amazing\nMulti\nSong\n") == 0);
+    assert(strcmp(p_song->p_artist, "Amazing\nPerson") == 0);
+
+    p_song = p_song->p_next;
+    assert(strcmp(p_song->p_title, "") == 0);
+    assert(strcmp(p_song->p_artist, "") == 0);
+
+    assert(p_song->p_next == NULL);
+
+    printf("test_add_song() passed\n");
 }
 
 /* === Test-Runner === */
@@ -19,7 +46,7 @@ void test_init_playlist(void)
 int main(void)
 {
     test_init_playlist();
-    //test_add_song();
+    test_add_song();
     //test_delete_firstSong();
     //test_delete_firstSong_empty(); // what happens if we delete first song from empty playlist
     //test_delete_playlist();
