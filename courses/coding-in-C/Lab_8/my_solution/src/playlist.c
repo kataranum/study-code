@@ -50,6 +50,18 @@ Playlist init_playlist(void) {
     return playlist;
 }
 
+void delete_playlist(Playlist *p_playlist) {
+    Song *p_song = p_playlist->p_first;
+
+    while (p_song != NULL) {
+        Song *p_next = p_song->p_next;
+        delete_song(p_song);
+        p_song = p_next;
+    }
+
+    p_playlist->p_first = NULL;
+}
+
 void add_song(Playlist *p_playlist, const char *str_title, const char *str_artist) {
     char *p_title = alloc_string(str_title);
     char *p_artist = alloc_string(str_artist);
@@ -76,16 +88,6 @@ void add_song(Playlist *p_playlist, const char *str_title, const char *str_artis
     p_last->p_next = p_new;
 }
 
-void print_playlist(Playlist playlist) {
-    Song *p_song = playlist.p_first;
-
-    while (p_song != NULL) {
-        printf("Title: %s, Artist: %s\n", p_song->p_title, p_song->p_artist);
-
-        p_song = p_song->p_next;
-    }
-}
-
 void delete_firstSong(Playlist *p_playlist) {
     if (p_playlist->p_first == NULL) {
         return;
@@ -96,14 +98,12 @@ void delete_firstSong(Playlist *p_playlist) {
     p_playlist->p_first = p_second;
 }
 
-void delete_playlist(Playlist *p_playlist) {
-    Song *p_song = p_playlist->p_first;
+void print_playlist(Playlist playlist) {
+    Song *p_song = playlist.p_first;
 
     while (p_song != NULL) {
-        Song *p_next = p_song->p_next;
-        delete_song(p_song);
-        p_song = p_next;
-    }
+        printf("Title: %s, Artist: %s\n", p_song->p_title, p_song->p_artist);
 
-    p_playlist->p_first = NULL;
+        p_song = p_song->p_next;
+    }
 }
