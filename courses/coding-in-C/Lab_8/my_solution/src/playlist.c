@@ -46,6 +46,7 @@ void delete_song(Song *p_song) {
 Playlist init_playlist(void) {
     Playlist playlist;
     playlist.p_first = NULL;
+    playlist.length = 0;
 
     return playlist;
 }
@@ -60,6 +61,7 @@ void delete_playlist(Playlist *p_playlist) {
     }
 
     p_playlist->p_first = NULL;
+    p_playlist->length = 0;
 }
 
 void add_song(Playlist *p_playlist, const char *str_title, const char *str_artist) {
@@ -74,6 +76,8 @@ void add_song(Playlist *p_playlist, const char *str_title, const char *str_artis
     p_new->p_title = p_title;
     p_new->p_artist = p_artist;
     p_new->p_next = NULL;
+
+    p_playlist->length++;
 
     if (p_playlist->p_first == NULL) {
         p_playlist->p_first = p_new;
@@ -96,6 +100,7 @@ void delete_firstSong(Playlist *p_playlist) {
     Song *p_second = p_playlist->p_first->p_next;
     delete_song(p_playlist->p_first);
     p_playlist->p_first = p_second;
+    p_playlist->length--;
 }
 
 void print_playlist(Playlist playlist) {
