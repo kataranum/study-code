@@ -17,6 +17,7 @@ typedef struct Song {
  */
 typedef struct {
     Song *p_first;
+    int length;
 } Playlist;
 
 /**
