@@ -3,3 +3,6 @@ default: playlist.o
 
 playlist.o:
 	gcc -c playlist.o src/playlist.c -I include -Wall -Wextra
+
+clean:
+	rm -f *.o *.out
