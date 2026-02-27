@@ -65,6 +65,11 @@ void delete_playlist(Playlist *p_playlist) {
 }
 
 void add_song(Playlist *p_playlist, const char *str_title, const char *str_artist) {
+    if (p_playlist->length >= MAX_SONGS) {
+        printf("Cannot add more songs to playlist.\n");
+        return;
+    }
+
     char *p_title = alloc_string(str_title);
     char *p_artist = alloc_string(str_artist);
 
