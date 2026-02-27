@@ -23,8 +23,13 @@ void test_add_song(void)
     Playlist p = init_playlist();
 
     add_song(&p, "Song title", "Song artist");
+    assert(p.length == 1);
+
     add_song(&p, "Amazing\nMulti\nSong\n", "Amazing\nPerson");
+    assert(p.length == 2);
+
     add_song(&p, "", "");
+    assert(p.length == 3);
 
     Song *p_song = p.p_first;
     assert(strcmp(p_song->p_title, "Song title") == 0);
@@ -54,14 +59,17 @@ void test_delete_firstSong(void)
 
     Song *p_song = p.p_first;
     assert(strcmp(p_song->p_title, "1") == 0);
+    assert(p.length == 2);
 
     delete_firstSong(&p);
     p_song = p.p_first;
     assert(strcmp(p_song->p_title, "2") == 0);
+    assert(p.length == 1);
 
     delete_firstSong(&p);
     p_song = p.p_first;
     assert(p_song == NULL);
+    assert(p.length == 0);
 
     delete_playlist(&p);
 
