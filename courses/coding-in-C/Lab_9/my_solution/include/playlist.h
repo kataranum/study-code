@@ -71,4 +71,12 @@ void print_playlist(Playlist playlist);
  */
 Song* find_song_by_title(Playlist playlist, const char *title);
 
+/**
+ * @brief Recursively count how many songs come after the current
+ * 
+ * @param current Current song
+ * @return int    Amount of following songs, including current
+ */
+int count_songs_recursive(const Song *current);
+
 #endif
