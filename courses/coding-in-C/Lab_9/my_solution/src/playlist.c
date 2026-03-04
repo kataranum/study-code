@@ -174,6 +174,50 @@ void swap_songs(Song *p1, Song *p2) {
     p1->p_next = p_next_2;
     p2->p_next = p_next_1;
 }
+
+/*
+```PSEUDOCODE
+for i in 1..playlist.length:
+    insert(i)
+end for
+
+insert:
+    for j in i..1:
+        if is_sorted(j, j-1):
+            return
+        else:
+            swap(j, j-1)
+        end if
+    end for
+```
+*/
 void sort_playlist_by_title(Playlist *playlist) {
-    
+    if (playlist->p_first == NULL) {
+        return;
+    }
+    //if (playlist->p_first->p_next == NULL) {
+    //    return;
+    //}
+
+    Song *p_start_unsorted = playlist->p_first->p_next;
+
+    while (p_start_unsorted != NULL) {
+        Song *p_insertion = p_start_unsorted;
+        Song *p_insertion_back = access_previous(p_insertion);
+
+        while (p_insertion_back != NULL) {
+            if (strcmp(p_insertion, p_insertion_back) >= 0) {
+                break;
+            }
+            else {
+                // swap insertion and insertion back
+                swap_songs(p_insertion, p_insertion_back);
+
+                // then update pointers
+                p_insertion_back = access_previous(p_insertion);
+            }
+        }
+
+        p_start_unsorted = p_start_unsorted->p_next;
+    }
 }
