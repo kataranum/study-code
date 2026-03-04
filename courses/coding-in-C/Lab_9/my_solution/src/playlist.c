@@ -161,6 +161,19 @@ int count_songs_recursive(const Song *current) {
     return count_songs_recursive(current->p_next) + 1;
 }
 
+void swap_songs(Song *p1, Song *p2) {
+    Song *p_prev_1 = access_previous(p1);
+    Song *p_prev_2 = access_previous(p2);
+
+    Song *p_next_1 = p1->p_next;
+    Song *p_next_2 = p2->p_next;
+
+    p_prev_1->p_next = p2;
+    p_prev_2->p_next = p1;
+
+    p1->p_next = p_next_2;
+    p2->p_next = p_next_1;
+}
 void sort_playlist_by_title(Playlist *playlist) {
     
 }

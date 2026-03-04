@@ -92,6 +92,14 @@ Song* find_song_by_title(Playlist playlist, const char *title);
 int count_songs_recursive(const Song *current);
 
 /**
+ * @brief Swap the positions of both songs
+ * 
+ * @param p1 First song
+ * @param p2 Second song
+ */
+void swap_songs(Song *p1, Song *p2);
+
+/**
  * @brief Use insertion sort to sort the given playlist alphabetically by title
  * 
  * @param playlist Playlist to sort
