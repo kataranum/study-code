@@ -314,9 +314,9 @@ void test_swap_songs_first_neighbouring() {
     p_second = p_first->p_next;
     p_third = p_second->p_next;
 
-    assert(strcmp(p.p_first->title, "second") == 0);
-    assert(strcmp(p_first->title, "first") == 0);
-    assert(strcmp(p_second->title, "last") == 0);
+    assert(strcmp(p_first->title, "second") == 0);
+    assert(strcmp(p_second->title, "first") == 0);
+    assert(strcmp(p_third->title, "last") == 0);
 
     delete_playlist(&p);
 
