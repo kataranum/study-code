@@ -154,6 +154,10 @@ Song* find_song_by_title(Playlist playlist, const char *title) {
 }
 
 int count_songs_recursive(const Song *current) {
+    if (current == NULL) {
+        return 0;
+    }
+
     if (current->p_next == NULL) {
         return 1;
     }
