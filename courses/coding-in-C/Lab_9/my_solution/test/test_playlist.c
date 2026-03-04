@@ -225,16 +225,16 @@ void test_swap_songs_easy() {
     Song *p_second = p_first->p_next;
     Song *p_third = p_second->p_next;
 
-    swap_songs(&p, p_first, p_second);
+    swap_songs(&p, p_first, p_third);
 
     p_first = p.p_first->p_next;
     p_second = p_first->p_next;
     p_third = p_second->p_next;
 
     assert(strcmp(p.p_first->title, "dummy") == 0);
-    assert(strcmp(p_first->title, "second") == 0);
-    assert(strcmp(p_second->title, "first") == 0);
-    assert(strcmp(p_third->title, "last") == 0);
+    assert(strcmp(p_first->title, "last") == 0);
+    assert(strcmp(p_second->title, "second") == 0);
+    assert(strcmp(p_third->title, "first") == 0);
 
     delete_playlist(&p);
 
@@ -246,25 +246,29 @@ void test_swap_songs_first() {
 
     add_song(&p, "first", "first");
     add_song(&p, "second", "second");
+    add_song(&p, "third", "third");
     add_song(&p, "last", "last");
 
     Song *p_first = p.p_first;
     Song *p_second = p_first->p_next;
     Song *p_third = p_second->p_next;
+    Song *p_last = p_third->p_next;
 
-    swap_songs(&p, p_first, p_second);
+    swap_songs(&p, p_first, p_third);
 
     p_first = p.p_first;
     p_second = p_first->p_next;
     p_third = p_second->p_next;
+    p_last = p_third->p_next;
 
-    assert(strcmp(p_first->title, "second") == 0);
-    assert(strcmp(p_second->title, "first") == 0);
-    assert(strcmp(p_third->title, "last") == 0);
+    assert(strcmp(p_first->title, "third") == 0);
+    assert(strcmp(p_second->title, "second") == 0);
+    assert(strcmp(p_third->title, "first") == 0);
+    assert(strcmp(p_last->title, "last") == 0);
 
     delete_playlist(&p);
 
-    printf("test_swap_songs_easy() passed\n");
+    printf("test_swap_songs_first() passed\n");
 }
 
 /* === Test-Runner === */
