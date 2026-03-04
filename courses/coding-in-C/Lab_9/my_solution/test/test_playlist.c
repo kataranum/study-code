@@ -172,6 +172,27 @@ void test_access_previous() {
     printf("test_access_previous() passed\n");
 }
 
+void test_find_by_title() {
+    Playlist p = init_playlist();
+
+    add_song(&p, "first", "a");
+    add_song(&p, "second", "b");
+    add_song(&p, "third", "c");
+
+    Song *p_first = p.p_first;
+    Song *p_second = p_first->p_next;
+    Song *p_third = p_second->p_next;
+
+    assert(find_song_by_title(p, "first") == p_first);
+    assert(find_song_by_title(p, "second") == p_second);
+    assert(find_song_by_title(p, "third") == p_third);
+    assert(find_song_by_title(p, "something else") == NULL);
+
+    delete_playlist(&p);
+
+    printf("test_find_by_title() passed\n");
+}
+
 /* === Test-Runner === */
 
 int main(void)
@@ -183,6 +204,7 @@ int main(void)
     test_delete_playlist();
     test_max_songs_limit(); // verify if the limit will be not be surpassed
     test_access_previous();
+    test_find_by_title();
 
     printf("Alle Playlist-Tests erfolgreich bestanden.\n");
     return 0;
