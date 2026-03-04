@@ -7,8 +7,8 @@
  * @brief An entry in the `Playlist` linked list
  */
 typedef struct Song {
-    char *p_title;
-    char *p_artist;
+    char *title;
+    char *artist;
     struct Song *p_next;
 } Song;
 
@@ -38,8 +38,8 @@ void delete_playlist(Playlist *p_playlist);
  * @brief Add a new song with the given attributes to the end of `Playlist`
  * 
  * @param p_playlist Playlist to append to
- * @param str_title  Title of new song
- * @param str_artist Artist of new song
+ * @param title  Title of new song
+ * @param artist Artist of new song
  */
 void add_song(Playlist *p_playlist, const char *str_title, const char *str_artist);
 

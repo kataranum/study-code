@@ -32,16 +32,16 @@ void test_add_song(void)
     assert(p.length == 3);
 
     Song *p_song = p.p_first;
-    assert(strcmp(p_song->p_title, "Song title") == 0);
-    assert(strcmp(p_song->p_artist, "Song artist") == 0);
+    assert(strcmp(p_song->title, "Song title") == 0);
+    assert(strcmp(p_song->artist, "Song artist") == 0);
 
     p_song = p_song->p_next;
-    assert(strcmp(p_song->p_title, "Amazing\nMulti\nSong\n") == 0);
-    assert(strcmp(p_song->p_artist, "Amazing\nPerson") == 0);
+    assert(strcmp(p_song->title, "Amazing\nMulti\nSong\n") == 0);
+    assert(strcmp(p_song->artist, "Amazing\nPerson") == 0);
 
     p_song = p_song->p_next;
-    assert(strcmp(p_song->p_title, "") == 0);
-    assert(strcmp(p_song->p_artist, "") == 0);
+    assert(strcmp(p_song->title, "") == 0);
+    assert(strcmp(p_song->artist, "") == 0);
 
     assert(p_song->p_next == NULL);
 
@@ -58,12 +58,12 @@ void test_delete_firstSong(void)
     add_song(&p, "2", "artist2");
 
     Song *p_song = p.p_first;
-    assert(strcmp(p_song->p_title, "1") == 0);
+    assert(strcmp(p_song->title, "1") == 0);
     assert(p.length == 2);
 
     delete_firstSong(&p);
     p_song = p.p_first;
-    assert(strcmp(p_song->p_title, "2") == 0);
+    assert(strcmp(p_song->title, "2") == 0);
     assert(p.length == 1);
 
     delete_firstSong(&p);
@@ -138,8 +138,8 @@ void test_max_songs_limit() {
     }
 
     // do assertions
-    assert(strcmp(p_last->p_title, expected_title) == 0);
-    assert(strcmp(p_last->p_artist, expected_artist) == 0);
+    assert(strcmp(p_last->title, expected_title) == 0);
+    assert(strcmp(p_last->artist, expected_artist) == 0);
     assert(p.length == MAX_SONGS);
 
     // try adding another song, shouldn't add

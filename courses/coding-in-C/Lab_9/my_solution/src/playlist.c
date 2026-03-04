@@ -34,8 +34,8 @@ char* alloc_string(const char *str) {
  * @param p_song Pointer to `Song` to delete
  */
 void delete_song(Song *p_song) {
-    free(p_song->p_title);
-    free(p_song->p_artist);
+    free(p_song->title);
+    free(p_song->artist);
     free(p_song);
 }
 
@@ -70,16 +70,16 @@ void add_song(Playlist *p_playlist, const char *str_title, const char *str_artis
         return;
     }
 
-    char *p_title = alloc_string(str_title);
-    char *p_artist = alloc_string(str_artist);
+    char *title = alloc_string(str_title);
+    char *artist = alloc_string(str_artist);
 
     Song *p_new = malloc(sizeof(Song));
     if (p_new == NULL) {
         printf("malloc failure\n");
         exit(1);
     }
-    p_new->p_title = p_title;
-    p_new->p_artist = p_artist;
+    p_new->title = title;
+    p_new->artist = artist;
     p_new->p_next = NULL;
 
     p_playlist->length++;
@@ -112,7 +112,7 @@ void print_playlist(Playlist playlist) {
     Song *p_song = playlist.p_first;
 
     while (p_song != NULL) {
-        printf("Title: %s, Artist: %s\n", p_song->p_title, p_song->p_artist);
+        printf("Title: %s, Artist: %s\n", p_song->title, p_song->artist);
 
         p_song = p_song->p_next;
     }
@@ -122,7 +122,7 @@ Song* find_song_by_title(Playlist playlist, const char *title) {
     Song *p_song = playlist.p_first;
 
     while (p_song != NULL) {
-        if (strcmp(title, p_song->p_title) == 0) {
+        if (strcmp(title, p_song->title) == 0) {
             return p_song;
         }
 
