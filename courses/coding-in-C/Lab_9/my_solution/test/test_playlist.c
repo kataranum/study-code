@@ -152,6 +152,26 @@ void test_max_songs_limit() {
     printf("test_max_songs_limit() passed\n");
 }
 
+void test_access_previous() {
+    Playlist p = init_playlist();
+
+    add_song(&p, "first title", "first author");
+    add_song(&p, "second title", "second_author");
+    add_song(&p, "third song", "third author");
+
+    Song *p_first = p.p_first;
+    Song *p_second = p_first->p_next;
+    Song *p_third = p_second->p_next;
+
+    assert(access_previous(p, p_third) == p_second);
+    assert(access_previous(p, p_second) == p_first);
+    assert(access_previous(p, p_first) == NULL);
+
+    delete_playlist(&p);
+
+    printf("test_access_previous() passed\n");
+}
+
 /* === Test-Runner === */
 
 int main(void)
@@ -162,6 +182,7 @@ int main(void)
     test_delete_firstSong_empty(); // what happens if we delete first song from empty playlist
     test_delete_playlist();
     test_max_songs_limit(); // verify if the limit will be not be surpassed
+    test_access_previous();
 
     printf("Alle Playlist-Tests erfolgreich bestanden.\n");
     return 0;
