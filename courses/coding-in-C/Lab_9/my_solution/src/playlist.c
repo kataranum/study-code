@@ -213,29 +213,10 @@ void swap_songs(Playlist *p_playlist, Song *p1, Song *p2) {
     p2->p_next = p_next_1;
 }
 
-/*
-```PSEUDOCODE
-for i in 1..playlist.length:
-    insert(i)
-end for
-
-insert:
-    for j in i..1:
-        if is_sorted(j, j-1):
-            return
-        else:
-            swap(j, j-1)
-        end if
-    end for
-```
-*/
 void sort_playlist_by_title(Playlist *playlist) {
     if (playlist->p_first == NULL) {
         return;
     }
-    //if (playlist->p_first->p_next == NULL) {
-    //    return;
-    //}
 
     Song *p_start_unsorted = playlist->p_first->p_next;
 
@@ -248,10 +229,7 @@ void sort_playlist_by_title(Playlist *playlist) {
                 break;
             }
             else {
-                // swap insertion and insertion back
                 swap_songs(playlist, p_insertion, p_insertion_back);
-
-                // then update pointers
                 p_insertion_back = access_previous(*playlist, p_insertion);
             }
         }
