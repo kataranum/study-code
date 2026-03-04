@@ -58,6 +58,18 @@ void delete_firstSong(Playlist *p_playlist);
 void print_playlist(Playlist playlist);
 
 /**
+ * @brief Get a pointer to the previous song
+ *
+ * Returns NULL if the given song is the first in the playlist, or if the
+ * playlist doesn't contain the song at all.
+ * 
+ * @param playlist Given playlist
+ * @param song Song to return previous Song of
+ * @return Song* Previous song
+ */
+Song* access_previous(Playlist playlist, const Song *song);
+
+/**
  * @brief Try to find a song with the given title and return a pointer to it
  *
  * Performs a linear search, matching every song with the given title until

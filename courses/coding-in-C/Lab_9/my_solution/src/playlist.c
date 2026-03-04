@@ -118,6 +118,27 @@ void print_playlist(Playlist playlist) {
     }
 }
 
+Song* access_previous(Playlist playlist, const Song *song) {
+    Song *p_prev = playlist.p_first;
+
+    if (p_prev == NULL || p_prev == song) {
+        return NULL;
+    }
+
+    Song *p_current = p_prev->p_next;
+
+    while (p_current != NULL) {
+        if (p_current == song) {
+            return p_prev;
+        }
+
+        p_prev = p_current;
+        p_current = p_current->p_next;
+    }
+
+    return NULL;
+}
+
 Song* find_song_by_title(Playlist playlist, const char *title) {
     Song *p_song = playlist.p_first;
 
