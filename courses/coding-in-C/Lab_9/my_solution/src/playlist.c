@@ -139,3 +139,7 @@ int count_songs_recursive(const Song *current) {
 
     return count_songs_recursive(current->p_next) + 1;
 }
+
+void sort_playlist_by_title(Playlist *playlist) {
+    
+}
