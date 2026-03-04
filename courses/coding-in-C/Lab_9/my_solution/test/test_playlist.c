@@ -193,6 +193,26 @@ void test_find_by_title() {
     printf("test_find_by_title() passed\n");
 }
 
+void test_recursive_count() {
+    Playlist p = init_playlist();
+
+    assert(count_songs_recursive(p.p_first) == 0);
+
+    add_song(&p, "a", "a");
+    assert(count_songs_recursive(p.p_first) == 1);
+
+    add_song(&p, "a", "a");
+    assert(count_songs_recursive(p.p_first) == 2);
+
+    add_song(&p, "a", "a");
+    assert(count_songs_recursive(p.p_first) == 3);
+    assert(count_songs_recursive(p.p_first->p_next) == 2);
+
+    delete_playlist(&p);
+
+    printf("test_recursive_count() passed\n");
+}
+
 /* === Test-Runner === */
 
 int main(void)
@@ -205,6 +225,7 @@ int main(void)
     test_max_songs_limit(); // verify if the limit will be not be surpassed
     test_access_previous();
     test_find_by_title();
+    test_recursive_count();
 
     printf("Alle Playlist-Tests erfolgreich bestanden.\n");
     return 0;
