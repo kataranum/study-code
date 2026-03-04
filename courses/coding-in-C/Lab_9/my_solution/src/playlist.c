@@ -165,12 +165,31 @@ int count_songs_recursive(const Song *current) {
     return count_songs_recursive(current->p_next) + 1;
 }
 
+void swap_neighbouring(Playlist *p_playlist, Song *p_left, Song *p_right) {
+    Song *p_prev = access_previous(*p_playlist, p_left);
+    Song *p_next = p_right->p_next;
+
+    p_prev->p_next = p_right;
+    p_right->p_next = p_left;
+    p_left->p_next = p_next;
+}
+
 void swap_songs(Playlist *p_playlist, Song *p1, Song *p2) {
     Song *p_prev_1 = access_previous(*p_playlist, p1);
     Song *p_prev_2 = access_previous(*p_playlist, p2);
 
     Song *p_next_1 = p1->p_next;
     Song *p_next_2 = p2->p_next;
+
+    // Handle edge cases of when songs are next to each other
+    if (p_next_1 == p2) {
+        swap_neighbouring(p_playlist, p1, p2);
+        return;
+    }
+    else if (p_next_2 == p1) {
+        swap_neighbouring(p_playlist, p2, p1);
+        return;
+    }
 
     if (p_prev_1 == NULL) {
         p_playlist->p_first = p2;
