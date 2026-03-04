@@ -94,10 +94,11 @@ int count_songs_recursive(const Song *current);
 /**
  * @brief Swap the positions of both songs
  * 
+ * @param p_playlist Pointer to playlist
  * @param p1 First song
  * @param p2 Second song
  */
-void swap_songs(Song *p1, Song *p2);
+void swap_songs(Playlist *p_playlist, Song *p1, Song *p2);
 
 /**
  * @brief Use insertion sort to sort the given playlist alphabetically by title

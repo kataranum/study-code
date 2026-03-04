@@ -162,8 +162,8 @@ int count_songs_recursive(const Song *current) {
 }
 
 void swap_songs(Playlist *p_playlist, Song *p1, Song *p2) {
-    Song *p_prev_1 = access_previous(p1);
-    Song *p_prev_2 = access_previous(p2);
+    Song *p_prev_1 = access_previous(*p_playlist, p1);
+    Song *p_prev_2 = access_previous(*p_playlist, p2);
 
     Song *p_next_1 = p1->p_next;
     Song *p_next_2 = p2->p_next;
@@ -213,10 +213,10 @@ void sort_playlist_by_title(Playlist *playlist) {
 
     while (p_start_unsorted != NULL) {
         Song *p_insertion = p_start_unsorted;
-        Song *p_insertion_back = access_previous(p_insertion);
+        Song *p_insertion_back = access_previous(*playlist, p_insertion);
 
         while (p_insertion_back != NULL) {
-            if (strcmp(p_insertion, p_insertion_back) >= 0) {
+            if (strcmp(p_insertion->title, p_insertion_back->title) >= 0) {
                 break;
             }
             else {
@@ -224,7 +224,7 @@ void sort_playlist_by_title(Playlist *playlist) {
                 swap_songs(playlist, p_insertion, p_insertion_back);
 
                 // then update pointers
-                p_insertion_back = access_previous(p_insertion);
+                p_insertion_back = access_previous(*playlist, p_insertion);
             }
         }
 
