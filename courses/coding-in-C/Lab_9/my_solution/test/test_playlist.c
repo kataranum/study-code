@@ -323,6 +323,39 @@ void test_swap_songs_first_neighbouring() {
     printf("test_swap_songs_first_neighbouring() passed\n");
 }
 
+void test_sort_by_title() {
+    Playlist p = init_playlist();
+
+    add_song(&p, "aba", "b");
+    add_song(&p, "aaa", "a");
+    add_song(&p, "aea", "e");
+    add_song(&p, "aca", "c");
+    add_song(&p, "ada", "d");
+
+    sort_playlist_by_title(&p);
+
+    char *expected_titles[] = {
+        "aaa",
+        "aba",
+        "aca",
+        "ada",
+        "aea",
+    };
+    int expected_titles_len = sizeof(expected_titles) / sizeof(expected_titles[0]);
+
+    Song *p_song = p.p_first;
+    char **pp_titles = expected_titles;
+
+    while (p_song->p_next != NULL) {
+        assert(strcmp(p_song->title, *(pp_titles++)) == 0);
+        p_song = p_song->p_next;
+    }
+
+    delete_playlist(&p);
+
+    printf("test_insertion_sort() passed\n");
+}
+
 /* === Test-Runner === */
 
 int main(void)
@@ -344,6 +377,8 @@ int main(void)
     test_swap_songs_first();
     test_swap_songs_neighbouring();
     test_swap_songs_first_neighbouring();
+
+    test_sort_by_title();
 
     printf("Alle Playlist-Tests erfolgreich bestanden.\n");
     return 0;
