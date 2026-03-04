@@ -169,7 +169,12 @@ void swap_neighbouring(Playlist *p_playlist, Song *p_left, Song *p_right) {
     Song *p_prev = access_previous(*p_playlist, p_left);
     Song *p_next = p_right->p_next;
 
-    p_prev->p_next = p_right;
+    if (p_prev == NULL) {
+        p_playlist->p_first = p_right;
+    }
+    else {
+        p_prev->p_next = p_right;
+    }
     p_right->p_next = p_left;
     p_left->p_next = p_next;
 }
