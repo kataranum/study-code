@@ -133,5 +133,9 @@ Song* find_song_by_title(Playlist playlist, const char *title) {
 }
 
 int count_songs_recursive(const Song *current) {
-    
+    if (current->p_next == NULL) {
+        return 1;
+    }
+
+    return count_songs_recursive(current->p_next) + 1;
 }
