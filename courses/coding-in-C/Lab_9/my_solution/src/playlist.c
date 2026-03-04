@@ -119,5 +119,15 @@ void print_playlist(Playlist playlist) {
 }
 
 Song* find_song_by_title(Playlist playlist, const char *title) {
-    
+    Song *p_song = playlist.p_first;
+
+    while (p_song != NULL) {
+        if (strcmp(title, p_song->p_title) == 0) {
+            return p_song;
+        }
+
+        p_song = p_song->p_next;
+    }
+
+    return NULL;
 }
