@@ -271,21 +271,79 @@ void test_swap_songs_first() {
     printf("test_swap_songs_first() passed\n");
 }
 
+void test_swap_songs_neighbouring() {
+    Playlist p = init_playlist();
+
+    add_song(&p, "dummy", "dummy");
+    add_song(&p, "first", "first");
+    add_song(&p, "second", "second");
+
+    Song *p_dummy = p.p_first;
+    Song *p_first = p_dummy->p_next;
+    Song *p_second = p_first->p_next;
+
+    swap_songs(&p, p_first, p_second);
+
+    p_dummy = p.p_first;
+    p_first = p_dummy->p_next;
+    p_second = p_first->p_next;
+
+    assert(strcmp(p_dummy->title, "dummy") == 0);
+    assert(strcmp(p_first->title, "second") == 0);
+    assert(strcmp(p_second->title, "first") == 0);
+
+    delete_playlist(&p);
+
+    printf("test_swap_songs_neighbouring() passed\n");
+}
+
+void test_swap_songs_first_neighbouring() {
+    Playlist p = init_playlist();
+
+    add_song(&p, "first", "first");
+    add_song(&p, "second", "second");
+    add_song(&p, "last", "last");
+
+    Song *p_first = p.p_first;
+    Song *p_second = p_first->p_next;
+    Song *p_third = p_second->p_next;
+
+    swap_songs(&p, p_first, p_second);
+
+    p_first = p.p_first;
+    p_second = p_first->p_next;
+    p_third = p_second->p_next;
+
+    assert(strcmp(p.p_first->title, "second") == 0);
+    assert(strcmp(p_first->title, "first") == 0);
+    assert(strcmp(p_second->title, "last") == 0);
+
+    delete_playlist(&p);
+
+    printf("test_swap_songs_first_neighbouring() passed\n");
+}
+
 /* === Test-Runner === */
 
 int main(void)
 {
     test_init_playlist();
+
     test_add_song();
     test_delete_firstSong();
     test_delete_firstSong_empty(); // what happens if we delete first song from empty playlist
     test_delete_playlist();
+
     test_max_songs_limit(); // verify if the limit will be not be surpassed
+
     test_access_previous();
     test_find_by_title();
     test_recursive_count();
+
     test_swap_songs_easy();
     test_swap_songs_first();
+    test_swap_songs_neighbouring();
+    test_swap_songs_first_neighbouring();
 
     printf("Alle Playlist-Tests erfolgreich bestanden.\n");
     return 0;
