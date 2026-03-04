@@ -57,4 +57,18 @@ void delete_firstSong(Playlist *p_playlist);
  */
 void print_playlist(Playlist playlist);
 
+/**
+ * @brief Try to find a song with the given title and return a pointer to it
+ *
+ * Performs a linear search, matching every song with the given title until
+ * the correct one is found and returned.
+ *
+ * Returns NULL in case no match was found
+ * 
+ * @param playlist Given playlist
+ * @param title    Title to search for
+ * @return Song*   Pointer to Song with matching title
+ */
+Song* find_song_by_title(Playlist playlist, const char *title);
+
 #endif

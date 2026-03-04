@@ -117,3 +117,7 @@ void print_playlist(Playlist playlist) {
         p_song = p_song->p_next;
     }
 }
+
+Song* find_song_by_title(Playlist playlist, const char *title) {
+    
+}
