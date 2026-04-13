@@ -5,6 +5,8 @@
 
 struct AccountInfo {
     std::string owner;
+    // balance is left unitialized when new class is created, the constructor
+    // should set this to a default value (e.g. 0.0)
     double balance;
 };
 
