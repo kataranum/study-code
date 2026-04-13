@@ -14,7 +14,7 @@ private:
 
 public:
     void setOwner(const std::string& name);
-    std::string get_owner();
+    std::string getOwner();
 
     void deposit(double amount);
     void withdraw(double amount);

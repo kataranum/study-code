@@ -4,7 +4,7 @@ void BankAccount::setOwner(const std::string& name) {
     this->info.owner = name;
 }
 
-std::string BankAccount::get_owner() {
+std::string BankAccount::getOwner() {
     return this->info.owner;
 }
 
