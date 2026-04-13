@@ -11,7 +11,6 @@ Note::Note(const Note& note) {
 
 Note::~Note() {
     delete this->text;
-    this->text = nullptr; // is this really necessary?
 
     std::cout << "Memory released" << std::endl;
 }
