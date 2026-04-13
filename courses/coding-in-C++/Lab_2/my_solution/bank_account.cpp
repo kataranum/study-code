@@ -8,8 +8,13 @@ std::string BankAccount::getOwner() {
     return this->info.owner;
 }
 
-void BankAccount::deposit(double amount) {
+bool BankAccount::deposit(double amount) {
+    if (amount < 0.0) {
+        return false;
+    }
+
     this->info.balance += amount;
+    return true;
 }
 
 void BankAccount::withdraw(double amount) {
