@@ -6,6 +6,7 @@ private:
 
 public:
     Note(const std::string& text);
+    Note(const Note& note);
     ~Note();
 
     void display();
