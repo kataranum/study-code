@@ -3,16 +3,12 @@
 
 #include <string>
 
-struct AccountInfo {
+class BankAccount {
+private:
     std::string owner;
     // balance is left unitialized when new class is created, the constructor
     // should set this to a default value (e.g. 0.0)
     double balance;
-};
-
-class BankAccount {
-private:
-    AccountInfo info;
 
 public:
     void setOwner(const std::string& name);
@@ -22,7 +18,7 @@ public:
     bool withdraw(double amount);
 
     double getBalance();
-    AccountInfo getAccountInfo();
+    void getAccountInfo();
 };
 
 #endif

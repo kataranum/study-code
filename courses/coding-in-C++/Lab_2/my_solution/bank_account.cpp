@@ -1,11 +1,12 @@
 #include "bank_account.hpp"
+#include <iostream>
 
 void BankAccount::setOwner(const std::string& name) {
-    this->info.owner = name;
+    this->owner = name;
 }
 
 std::string BankAccount::getOwner() {
-    return this->info.owner;
+    return this->owner;
 }
 
 bool BankAccount::deposit(double amount) {
@@ -13,7 +14,7 @@ bool BankAccount::deposit(double amount) {
         return false;
     }
 
-    this->info.balance += amount;
+    this->balance += amount;
     return true;
 }
 
@@ -22,19 +23,20 @@ bool BankAccount::withdraw(double amount) {
         return false;
     }
 
-    double new_balance = this->info.balance - amount;
+    double new_balance = this->balance - amount;
     if (new_balance < 0.0) {
         return false;
     }
 
-    this->info.balance = new_balance;
+    this->balance = new_balance;
     return true;
 }
 
 double BankAccount::getBalance() {
-    return this->info.balance;
+    return this->balance;
 }
 
-AccountInfo BankAccount::getAccountInfo() {
-    return this->info;
+void BankAccount::getAccountInfo() {
+    std::cout << "Name: " << this->owner << std::endl;
+    std::cout << "Balance: " << this->balance << std::endl;
 }
