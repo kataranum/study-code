@@ -13,5 +13,5 @@ Note::~Note() {
 }
 
 void Note::display() {
-    std::cout << this->text << std::endl;
+    std::cout << *this->text << std::endl;
 }
