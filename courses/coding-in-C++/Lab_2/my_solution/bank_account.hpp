@@ -17,7 +17,7 @@ public:
     std::string getOwner();
 
     bool deposit(double amount);
-    void withdraw(double amount);
+    bool withdraw(double amount);
 
     double getBalance();
     AccountInfo getAccountInfo();

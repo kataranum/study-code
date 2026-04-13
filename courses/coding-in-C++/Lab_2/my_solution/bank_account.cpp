@@ -17,8 +17,18 @@ bool BankAccount::deposit(double amount) {
     return true;
 }
 
-void BankAccount::withdraw(double amount) {
-    this->info.balance -= amount;
+bool BankAccount::withdraw(double amount) {
+    if (amount < 0.0) {
+        return false;
+    }
+
+    double new_balance = this->info.balance - amount;
+    if (new_balance < 0.0) {
+        return false;
+    }
+
+    this->info.balance = new_balance;
+    return true;
 }
 
 double BankAccount::getBalance() {
