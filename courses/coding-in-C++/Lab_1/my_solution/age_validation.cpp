@@ -2,11 +2,11 @@
 #include <cstdint>
 #include <string>
 
-bool is_adult(uint32_t age) {
+bool is_adult(uint8_t age) {
     return age >= 18;
 }
 
-bool is_senior(uint32_t age) {
+bool is_senior(uint8_t age) {
     return age >= 65;
 }
 
@@ -16,9 +16,9 @@ int main(void) {
     std::string age_string = "";
     std::getline(std::cin, age_string);
 
-    uint32_t age = std::stoi(age_string);
+    uint8_t age = std::stoi(age_string);
 
-    std::cout << "You are " << age << " years old." << std::endl;
+    std::cout << "You are " << age_string << " years old." << std::endl;
 
     if (is_senior(age)) {
         std::cout << "That means that you are a senior citizen." << std::endl;
