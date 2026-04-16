@@ -64,6 +64,41 @@ void read_student_data(
     );
 }
 
+void calculate_grade(
+    uint8_t homework,
+    uint8_t midterm,
+    uint8_t final_exam,
+    uint8_t& final_grade,
+    std::string& letter_grade
+) {
+    uint16_t w_homework = (uint16_t)homework * 40;
+    uint16_t w_midterm = (uint16_t)midterm * 25;
+    uint16_t w_final_exam = (uint16_t)final_exam * 35;
+
+    final_grade = static_cast<uint8_t>(
+        (w_homework + w_midterm + w_final_exam) / 100
+    );
+
+    if (final_grade >= 90) {
+        letter_grade = 'A';
+    }
+    else if (final_grade >= 80) {
+        letter_grade = 'B';
+    }
+    else if (final_grade >= 70) {
+        letter_grade = 'C';
+    }
+    else if (final_grade >= 60) {
+        letter_grade = 'D';
+    }
+    else if (final_grade >= 50) {
+        letter_grade = 'E';
+    }
+    else {
+        letter_grade = 'F';
+    }
+}
+
 int main(void) {
     return 0;
 }
