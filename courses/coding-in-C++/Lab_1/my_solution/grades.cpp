@@ -133,6 +133,7 @@ void print_report(
     const std::string& letter_grade
 ) {
     const int LINE_WIDTH = 25;
+    const int LEFT_WIDTH = 15;
 
     print_line(LINE_WIDTH);
     std::cout << "Student Report" << std::endl;
@@ -143,25 +144,25 @@ void print_report(
     std::cout << "Scores" << std::endl;
     print_line(LINE_WIDTH);
 
-    std::cout << "Homework" << std::left << std::setw(10);
+    std::cout << std::left << std::setw(LEFT_WIDTH) << "Homework";
     std::cout << ": " << std::to_string(homework) << std::setprecision(2) << std::endl;;
 
-    std::cout << "Midterm" << std::left;
+    std::cout << std::left << std::setw(LEFT_WIDTH) << "Midterm";
     std::cout << ": " << std::to_string(midterm) << std::endl;
 
-    std::cout << "Final Exam" << std::left;
+    std::cout << std::left << std::setw(LEFT_WIDTH) << "Final Exam";
     std::cout << ": " << std::to_string(final_exam) << std::endl;
 
     std::cout << std::endl;
 
-    std::cout << "Final Grade" << std::left;
+    std::cout << std::left << std::setw(LEFT_WIDTH) << "Final Grade";
     std::cout << ": " << std::to_string(final_grade) << std::endl;
     
-    std::cout << "Letter Grade" << std::left;
+    std::cout << std::left << std::setw(LEFT_WIDTH) << "Letter Grade";
     std::cout << ": " << letter_grade << std::endl;
 
     std::string pass_status = get_pass_status(letter_grade[0]);
-    std::cout << "Status" << std::left;
+    std::cout << std::left << std::setw(LEFT_WIDTH) << "Status";
     std::cout << ": " << pass_status << std::endl;
 
     print_line(LINE_WIDTH);
