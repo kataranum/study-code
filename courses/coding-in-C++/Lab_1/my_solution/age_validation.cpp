@@ -12,28 +12,39 @@ bool is_senior(uint8_t age) {
 }
 
 int main(void) {
-    std::cout << "Please enter your age: " << std::endl;
-    
     int age_input = 0;
+    
+    while (true) {
+        std::cout << "Please enter your age: " << std::endl;
 
-    if (!(std::cin >> age_input)) {
-        std::cout << "Invalid input" << std::endl;
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        if (!(std::cin >> age_input)) {
+            std::cout << "Invalid input" << std::endl;
 
-        return 1;
-    }
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-    if (age_input < 0) {
-        std::cout << "Age cannot be negative" << std::endl;
+            continue;
+        }
 
-        return 2;
-    }
+        if (age_input < 0) {
+            std::cout << "Age cannot be negative" << std::endl;
 
-    if (age_input > 255) {
-        std::cout << "Age is way too high" << std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-        return 3;
+            continue;
+        }
+
+        if (age_input > 255) {
+            std::cout << "Age is way too high" << std::endl;
+
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            continue;
+        }
+
+        break;
     }
 
     uint8_t age = static_cast<uint8_t>(age_input);
