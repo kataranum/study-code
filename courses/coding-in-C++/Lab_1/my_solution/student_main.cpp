@@ -2,10 +2,10 @@
 
 int main(void) {
     std::string name = "";
-    uint8_t homework = 0;
-    uint8_t midterm = 0;
-    uint8_t final_exam = 0;
-    uint8_t final_grade = 0;
+    float homework = 0.0;
+    float midterm = 0.0;
+    float final_exam = 0.0;
+    float final_grade = 0.0;
     std::string letter_grade = "";
 
     read_student_data(name, homework, midterm, final_exam);

@@ -22,7 +22,7 @@ std::string user_input_string(const std::string& prompt) {
     }
 }
 
-int user_input_num(const std::string& prompt, int lower, int upper) {
+float user_input_num(const std::string& prompt, float lower, float upper) {
     while (true) {
         std::cout << prompt << std::endl;
 
@@ -49,50 +49,38 @@ int user_input_num(const std::string& prompt, int lower, int upper) {
 
 void read_student_data(
     std::string& name,
-    uint8_t& homework,
-    uint8_t& midterm,
-    uint8_t& final_exam
+    float& homework,
+    float& midterm,
+    float& final_exam
 ) {
     name = user_input_string("Enter student name: ");
-    homework = static_cast<uint8_t>(
-        user_input_num("Homework score: ", 0, 100)
-    );
-    midterm = static_cast<uint8_t>(
-        user_input_num("Midterm score: ", 0, 100)
-    );
-    final_exam = static_cast<uint8_t>(
-        user_input_num("Final exam score: ", 0, 100)
-    );
+    homework = user_input_num("Homework score: ", 0.0, 100.0);
+    midterm = user_input_num("Midterm score: ", 0.0, 100.0);
+    final_exam = user_input_num("Final exam score: ", 0.0, 100.0);
 }
 
 void calculate_grade(
-    uint8_t homework,
-    uint8_t midterm,
-    uint8_t final_exam,
-    uint8_t& final_grade,
+    float homework,
+    float midterm,
+    float final_exam,
+    float& final_grade,
     std::string& letter_grade
 ) {
-    uint16_t w_homework = (uint16_t)homework * 40;
-    uint16_t w_midterm = (uint16_t)midterm * 25;
-    uint16_t w_final_exam = (uint16_t)final_exam * 35;
+    final_grade = homework * 0.4 + midterm * 0.25 + final_exam * 0.35;
 
-    final_grade = static_cast<uint8_t>(
-        (w_homework + w_midterm + w_final_exam) / 100
-    );
-
-    if (final_grade >= 90) {
+    if (final_grade >= 90.0) {
         letter_grade = 'A';
     }
-    else if (final_grade >= 80) {
+    else if (final_grade >= 80.0) {
         letter_grade = 'B';
     }
-    else if (final_grade >= 70) {
+    else if (final_grade >= 70.0) {
         letter_grade = 'C';
     }
-    else if (final_grade >= 60) {
+    else if (final_grade >= 60.0) {
         letter_grade = 'D';
     }
-    else if (final_grade >= 50) {
+    else if (final_grade >= 50.0) {
         letter_grade = 'E';
     }
     else {
@@ -126,10 +114,10 @@ std::string get_pass_status(char letter_grade) {
 
 void print_report(
     const std::string& name,
-    uint8_t homework,
-    uint8_t midterm,
-    uint8_t final_exam,
-    uint8_t final_grade,
+    float homework,
+    float midterm,
+    float final_exam,
+    float final_grade,
     const std::string& letter_grade
 ) {
     const int LINE_WIDTH = 25;
@@ -144,19 +132,21 @@ void print_report(
     std::cout << "Scores" << std::endl;
     print_line(LINE_WIDTH);
 
+    std::cout << std::setprecision(2) << std::fixed;
+
     std::cout << std::left << std::setw(LEFT_WIDTH) << "Homework";
-    std::cout << ": " << std::to_string(homework) << std::setprecision(2) << std::endl;;
+    std::cout << ": " << homework << std::endl;
 
     std::cout << std::left << std::setw(LEFT_WIDTH) << "Midterm";
-    std::cout << ": " << std::to_string(midterm) << std::endl;
+    std::cout << ": " << midterm << std::endl;
 
     std::cout << std::left << std::setw(LEFT_WIDTH) << "Final Exam";
-    std::cout << ": " << std::to_string(final_exam) << std::endl;
+    std::cout << ": " << final_exam << std::endl;
 
     std::cout << std::endl;
 
     std::cout << std::left << std::setw(LEFT_WIDTH) << "Final Grade";
-    std::cout << ": " << std::to_string(final_grade) << std::endl;
+    std::cout << ": " << final_grade << std::endl;
     
     std::cout << std::left << std::setw(LEFT_WIDTH) << "Letter Grade";
     std::cout << ": " << letter_grade << std::endl;
