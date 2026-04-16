@@ -50,9 +50,18 @@ void read_student_data(
     std::string& name,
     uint8_t& homework,
     uint8_t& midterm,
-    uint8_t& finalExam
+    uint8_t& final_exam
 ) {
-
+    name = user_input_string("Enter student name: ");
+    homework = static_cast<uint8_t>(
+        user_input_num("Homework score: ", 0, 100)
+    );
+    midterm = static_cast<uint8_t>(
+        user_input_num("Midterm score: ", 0, 100)
+    );
+    final_exam = static_cast<uint8_t>(
+        user_input_num("Final exam score: ", 0, 100)
+    );
 }
 
 int main(void) {
