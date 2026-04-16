@@ -30,6 +30,12 @@ int main(void) {
         return 2;
     }
 
+    if (age_input > 255) {
+        std::cout << "Age is way too high" << std::endl;
+
+        return 3;
+    }
+
     uint8_t age = static_cast<uint8_t>(age_input);
 
     std::cout << "You are " << std::to_string(age) << " years old." << std::endl;
