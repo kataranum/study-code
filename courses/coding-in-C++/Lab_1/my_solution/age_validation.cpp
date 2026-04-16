@@ -20,7 +20,14 @@ int main(void) {
         std::cout << "Invalid input" << std::endl;
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        
         return 1;
+    }
+
+    if (age < 0) {
+        std::cout << "Age cannot be negative" << std::endl;
+
+        return 2;
     }
 
     std::cout << "You are " << std::to_string(age) << " years old." << std::endl;
