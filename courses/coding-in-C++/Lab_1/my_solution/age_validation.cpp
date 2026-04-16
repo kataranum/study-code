@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdint>
+#include <string>
 
 bool is_adult(uint32_t age) {
     return age >= 18;
@@ -10,7 +11,24 @@ bool is_senior(uint32_t age) {
 }
 
 int main(void) {
-    std::cout << "Hello world" << std::endl;
+    std::cout << "Please enter your age: " << std::endl;
+    
+    std::string age_string = "";
+    std::getline(std::cin, age_string);
+
+    uint32_t age = std::stoi(age_string);
+
+    std::cout << "You are " << age << " years old." << std::endl;
+
+    if (is_senior(age)) {
+        std::cout << "That means that you are a senior citizen." << std::endl;
+    }
+    else if (is_adult(age)) {
+        std::cout << "That means that you are an adult" << std::endl;
+    }
+    else {
+        std::cout << "That means that you are still a kid or teenager." << std::endl;
+    }
 
     return 0;
 }
