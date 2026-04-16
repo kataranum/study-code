@@ -12,6 +12,8 @@ bool is_senior(uint8_t age) {
 }
 
 int main(void) {
+
+    // If std::cin writes into a uint8_t we get some weird values
     int age_input = 0;
     
     while (true) {
@@ -47,6 +49,8 @@ int main(void) {
         break;
     }
 
+    // alternative data type: uint_fast8_t if we care more about speed than
+    // memory consumption
     uint8_t age = static_cast<uint8_t>(age_input);
 
     std::cout << "You are " << std::to_string(age) << " years old." << std::endl;
