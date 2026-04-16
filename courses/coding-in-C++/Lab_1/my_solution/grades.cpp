@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iomanip>
 #include <limits>
+#include <string>
 
 std::string user_input_string(const std::string& prompt) {
     while (true) {
@@ -143,18 +144,18 @@ void print_report(
     print_line(LINE_WIDTH);
 
     std::cout << "Homework" << std::left << std::setw(10);
-    std::cout << ": " << homework << std::setprecision(2) << std::endl;;
+    std::cout << ": " << std::to_string(homework) << std::setprecision(2) << std::endl;;
 
     std::cout << "Midterm" << std::left;
-    std::cout << ": " << midterm << std::endl;
+    std::cout << ": " << std::to_string(midterm) << std::endl;
 
     std::cout << "Final Exam" << std::left;
-    std::cout << ": " << final_exam << std::endl;
+    std::cout << ": " << std::to_string(final_exam) << std::endl;
 
     std::cout << std::endl;
 
     std::cout << "Final Grade" << std::left;
-    std::cout << ": " << final_grade << std::endl;
+    std::cout << ": " << std::to_string(final_grade) << std::endl;
     
     std::cout << "Letter Grade" << std::left;
     std::cout << ": " << letter_grade << std::endl;
