@@ -14,21 +14,23 @@ bool is_senior(uint8_t age) {
 int main(void) {
     std::cout << "Please enter your age: " << std::endl;
     
-    int age = 0;
+    int age_input = 0;
 
-    if (!(std::cin >> age)) {
+    if (!(std::cin >> age_input)) {
         std::cout << "Invalid input" << std::endl;
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        
+
         return 1;
     }
 
-    if (age < 0) {
+    if (age_input < 0) {
         std::cout << "Age cannot be negative" << std::endl;
 
         return 2;
     }
+
+    uint8_t age = static_cast<uint8_t>(age_input);
 
     std::cout << "You are " << std::to_string(age) << " years old." << std::endl;
 
