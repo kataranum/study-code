@@ -1,5 +1,5 @@
-#include <ios>
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <cstdint>
 #include <limits>
@@ -97,6 +97,73 @@ void calculate_grade(
     else {
         letter_grade = 'F';
     }
+}
+
+void print_line(int line_width) {
+    for (int i = 0; i < line_width; i++) {
+        std::cout << "-";
+    }
+    std::cout << std::endl;
+}
+
+std::string get_pass_status(char letter_grade) {
+    switch (letter_grade) {
+    case 'A':
+    case 'B':
+    case 'C':
+        return "PASS";
+    case 'D':
+    case 'E':
+        return "CONDITIONAL PASS";
+    case 'F':
+        return "FAIL";
+    
+    default:
+        exit(1);
+    }
+}
+
+void print_report(
+    const std::string& name,
+    uint8_t homework,
+    uint8_t midterm,
+    uint8_t final_exam,
+    uint8_t final_grade,
+    const std::string& letter_grade
+) {
+    const int LINE_WIDTH = 25;
+
+    print_line(LINE_WIDTH);
+    std::cout << "Student Report" << std::endl;
+    print_line(LINE_WIDTH);
+
+    std::cout << "Name: " << name << "\n" << std::endl;
+
+    std::cout << "Scores" << std::endl;
+    print_line(LINE_WIDTH);
+
+    std::cout << "Homework" << std::left << std::setw(10);
+    std::cout << ": " << homework << std::setprecision(2) << std::endl;;
+
+    std::cout << "Midterm" << std::left;
+    std::cout << ": " << midterm << std::endl;
+
+    std::cout << "Final Exam" << std::left;
+    std::cout << ": " << final_exam << std::endl;
+
+    std::cout << std::endl;
+
+    std::cout << "Final Grade" << std::left;
+    std::cout << ": " << final_grade << std::endl;
+    
+    std::cout << "Letter Grade" << std::left;
+    std::cout << ": " << letter_grade << std::endl;
+
+    std::string pass_status = get_pass_status(letter_grade[0]);
+    std::cout << "Status" << std::left;
+    std::cout << ": " << pass_status << std::endl;
+
+    print_line(LINE_WIDTH);
 }
 
 int main(void) {
