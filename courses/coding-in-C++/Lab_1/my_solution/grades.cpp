@@ -1,7 +1,7 @@
+#include "grades.hpp"
+
 #include <iostream>
 #include <iomanip>
-#include <string>
-#include <cstdint>
 #include <limits>
 
 std::string user_input_string(const std::string& prompt) {
@@ -164,32 +164,4 @@ void print_report(
     std::cout << ": " << pass_status << std::endl;
 
     print_line(LINE_WIDTH);
-}
-
-int main(void) {
-    std::string name = "";
-    uint8_t homework = 0;
-    uint8_t midterm = 0;
-    uint8_t final_exam = 0;
-    uint8_t final_grade = 0;
-    std::string letter_grade = "";
-
-    read_student_data(name, homework, midterm, final_exam);
-    calculate_grade(
-        homework,
-        midterm,
-        final_exam,
-        final_grade,
-        letter_grade
-    );
-    print_report(
-        name,
-        homework,
-        midterm,
-        final_exam,
-        final_grade,
-        letter_grade
-    );
-
-    return 0;
 }
