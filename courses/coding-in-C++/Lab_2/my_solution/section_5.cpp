@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <iomanip>
 
 // using namespaces is considered bad practice because it may silently shadow
 // variables or functions.
