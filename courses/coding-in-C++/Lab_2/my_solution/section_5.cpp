@@ -45,10 +45,7 @@ public:
     }
 
     bool isAvailable() {
-        if (stock > 0)
-            return true;
-        else
-            return false;
+        return stock > 0;
     }
 
     void printInfo() {
