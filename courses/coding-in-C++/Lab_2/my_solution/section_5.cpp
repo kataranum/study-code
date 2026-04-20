@@ -1,22 +1,25 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
-using namespace std;
+
+// using namespaces is considered bad practice because it may silently shadow
+// variables or functions.
+//using namespace std;
 
 class Article {
 public:
-    string name;
+    std::string name;
     double price;
     int stock;
-    string* category;
+    std::string* category;
     int id;
 
-    Article(string name, double price, int stock, string category, int id) {
+    Article(std::string name, double price, int stock, std::string category, int id) {
         name = name;
         price = price;
         stock = stock;
         this->id = id;
-        this->category = new string;
+        this->category = new std::string;
         *this->category = category;
     }
 
@@ -49,11 +52,11 @@ public:
     }
 
     void printInfo() {
-        cout << "Article: " << name << endl;
-        cout << "Category: " << *category << endl;
-        cout << "Price: " << price << endl;
-        cout << "Stock: " << stock << endl;
-        cout << "ID: " << id << endl;
+        std::cout << "Article: " << name << std::endl;
+        std::cout << "Category: " << *category << std::endl;
+        std::cout << "Price: " << price << std::endl;
+        std::cout << "Stock: " << stock << std::endl;
+        std::cout << "ID: " << id << std::endl;
     }
 };
 
@@ -65,7 +68,7 @@ int main() {
     a.price = -100;
     a.applyDiscount(150);
 
-    if (a.isAvailable()) cout << "Article available" << endl;
+    if (a.isAvailable()) std::cout << "Article available" << std::endl;
 
     a.printInfo();
 }
