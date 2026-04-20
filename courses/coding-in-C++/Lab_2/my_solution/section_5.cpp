@@ -11,7 +11,7 @@ private:
     std::string name;
     double price;
     int stock;
-    std::string* category;
+    std::string category;
     int id;
 
 public:
@@ -21,10 +21,7 @@ public:
         int stock,
         std::string category,
         int id
-    ) : name(name), price(price), stock(stock), id(id) {
-        this->category = new std::string;
-        *this->category = category;
-    }
+    ) : name(name), price(price), stock(stock), category(category), id(id) { }
 
     void setPrice(double price) {
         price = price;
@@ -56,7 +53,7 @@ public:
 
     void printInfo() {
         std::cout << "Article: " << name << std::endl;
-        std::cout << "Category: " << *category << std::endl;
+        std::cout << "Category: " << category << std::endl;
         std::cout << "Price: " << price << std::endl;
         std::cout << "Stock: " << stock << std::endl;
         std::cout << "ID: " << id << std::endl;
