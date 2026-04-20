@@ -65,7 +65,9 @@ int main() {
     a.setPrice(-100);
     a.applyDiscount(150);
 
-    if (a.isAvailable()) std::cout << "Article available" << std::endl;
+    if (a.isAvailable()) {
+        std::cout << "Article available" << std::endl;
+    }
 
     a.printInfo();
 }
