@@ -14,11 +14,13 @@ public:
     std::string* category;
     int id;
 
-    Article(std::string name, double price, int stock, std::string category, int id) {
-        name = name;
-        price = price;
-        stock = stock;
-        this->id = id;
+    Article(
+        std::string name,
+        double price,
+        int stock,
+        std::string category,
+        int id
+    ) : name(name), price(price), stock(stock), id(id) {
         this->category = new std::string;
         *this->category = category;
     }
