@@ -65,7 +65,7 @@ int main() {
 
     a.sell(15);
     a.restock(-5);
-    a.price = -100;
+    a.setPrice(-100);
     a.applyDiscount(150);
 
     if (a.isAvailable()) std::cout << "Article available" << std::endl;
