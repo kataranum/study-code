@@ -6,6 +6,16 @@
 // variables or functions.
 //using namespace std;
 
+// issue 9: no header file
+
+// issue 10: no documentation
+
+// issue 11: no validation of input parameters (e.g. setPrice)
+
+// issue 12: wrong usage of restock() in main
+
+// issue 13: wrong usage of setPrice() in main
+
 class Article {
 private:
     std::string name;
