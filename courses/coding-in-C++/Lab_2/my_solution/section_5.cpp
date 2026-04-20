@@ -40,15 +40,15 @@ public:
         return price;
     }
 
-    double getPrice() {
+    double getPrice() const {
         return price;
     }
 
-    bool isAvailable() {
+    bool isAvailable() const {
         return stock > 0;
     }
 
-    void printInfo() {
+    void printInfo() const {
         std::cout << "Article: " << name << std::endl;
         std::cout << "Category: " << category << std::endl;
         std::cout << "Price: " << price << std::endl;
