@@ -7,13 +7,14 @@
 //using namespace std;
 
 class Article {
-public:
+private:
     std::string name;
     double price;
     int stock;
     std::string* category;
     int id;
 
+public:
     Article(
         std::string name,
         double price,
