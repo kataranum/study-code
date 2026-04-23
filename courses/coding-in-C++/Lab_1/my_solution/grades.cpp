@@ -26,7 +26,7 @@ float user_input_num(const std::string& prompt, float lower, float upper) {
     while (true) {
         std::cout << prompt << std::endl;
 
-        int input = 0;
+        float input = 0;
 
         if (!(std::cin >> input)) {
             std::cout << "Invalid input" << std::endl;
