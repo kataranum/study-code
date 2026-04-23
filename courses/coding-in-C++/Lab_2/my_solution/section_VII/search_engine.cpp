@@ -61,6 +61,9 @@ std::vector<std::string> split_string(std::string input, char split) {
         index = input.find(split);
     }
 
+    // push last result
+    result.push_back(input);
+
     return result;
 }
 
@@ -72,7 +75,7 @@ uint32_t find_occurances(std::string content, const std::string& substr) {
     while (index != std::string::npos) {
         occurances++;
         
-        content = content.substr(index);
+        content = content.substr(index + substr.size());
         index = content.find(substr);
     }
 
@@ -86,7 +89,7 @@ std::vector<SearchResult> SearchEngine::process_query(const SearchQuery& query) 
     }
 
     std::string input_lower = str_to_lower(query.input);
-    std::vector<std::string> tokens = split_string(query.input, ' ');
+    std::vector<std::string> tokens = split_string(input_lower, ' ');
     std::vector<SearchResult> results = std::vector<SearchResult>();
 
     this->total_queries++;
