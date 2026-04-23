@@ -18,6 +18,8 @@ private:
     uint64_t total_queries;
 
 public:
+    SearchEngine();
+
     size_t get_amount_resources() const;
     uint64_t get_total_queries() const;
 
