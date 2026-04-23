@@ -11,6 +11,8 @@ private:
     uint64_t views;
 
 public:
+    WebResource(const std::string& address, const std::string& content);
+
     const std::string& get_address() const;
     const std::string& get_content() const;
     uint64_t get_views() const;
