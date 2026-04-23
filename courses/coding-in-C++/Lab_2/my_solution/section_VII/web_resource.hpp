@@ -11,13 +11,13 @@ private:
     uint64_t views;
 
 public:
-    const std::string& get_address();
-    const std::string& get_content();
-    uint64_t get_views();
+    const std::string& get_address() const;
+    const std::string& get_content() const;
+    uint64_t get_views() const;
 
     WebResource& increment_views();
 
-    bool is_popular();
+    bool is_popular() const;
 };
 
 #endif

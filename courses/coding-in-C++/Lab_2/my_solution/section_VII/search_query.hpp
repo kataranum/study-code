@@ -10,7 +10,7 @@ public:
     uint64_t max_results;
 
 public:
-    bool is_valid();
+    bool is_valid() const;
 };
 
 #endif

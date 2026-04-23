@@ -18,10 +18,10 @@ private:
     uint64_t total_queries;
 
 public:
-    size_t get_amount_resources();
-    uint64_t get_total_queries();
+    size_t get_amount_resources() const;
+    uint64_t get_total_queries() const;
 
-    const WebResource& fetch_result(const SearchResult& result);
+    const WebResource& fetch_result(const SearchResult& result) const;
 
     std::vector<SearchResult> process_query(const SearchQuery& query);
 };
