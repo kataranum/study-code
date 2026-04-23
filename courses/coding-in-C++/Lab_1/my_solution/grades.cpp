@@ -108,6 +108,7 @@ std::string get_pass_status(char letter_grade) {
         return "FAIL";
     
     default:
+        std::cout << "get_pass_status(): invalid character" << std::endl;
         exit(1);
     }
 }
