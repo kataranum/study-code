@@ -8,7 +8,12 @@ int main(void) {
     float final_grade = 0.0;
     std::string letter_grade = "";
 
-    read_student_data(name, homework, midterm, final_exam);
+    read_student_data(
+        name,
+        homework,
+        midterm,
+        final_exam
+    );
     calculate_grade(
         homework,
         midterm,
