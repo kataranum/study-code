@@ -3,6 +3,7 @@
 #include "web_resource.hpp"
 #include <algorithm>
 #include <cctype>
+#include <string>
 #include <vector>
 #include <iostream>
 
@@ -12,7 +13,7 @@ SearchEngine::SearchEngine() :
 { }
 
 bool SearchEngine::upload_web_resource(const WebResource& resource) {
-    for (int i = 0; i < this->database.size(); i++) {
+    for (size_t i = 0; i < this->database.size(); i++) {
         const WebResource& existing_resource = this->database[i];
 
         if (existing_resource.get_address() == resource.get_address()) {
@@ -52,7 +53,7 @@ std::vector<std::string> split_string(std::string input, char split) {
 
     size_t index = input.find(split);
 
-    while (index != -1) {
+    while (index != std::string::npos) {
         std::string token = input.substr(0, index);
         result.push_back(token);
         
@@ -68,7 +69,7 @@ uint32_t find_occurances(std::string content, const std::string& substr) {
 
     size_t index = content.find(substr);
 
-    while (index != -1) {
+    while (index != std::string::npos) {
         occurances++;
         
         content = content.substr(index);
@@ -97,7 +98,7 @@ std::vector<SearchResult> SearchEngine::process_query(const SearchQuery& query) 
             i, 0
         };
 
-        for (int j = 0; j < tokens.size(); j++) {
+        for (size_t j = 0; j < tokens.size(); j++) {
             const std::string& token = tokens[j];
             int32_t token_occurances = find_occurances(
                 str_to_lower(resource.get_content()),

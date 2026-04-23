@@ -38,7 +38,7 @@ SearchEngine init_search_engine() {
 }
 
 void print_results_info(const std::vector<SearchResult>& results, SearchEngine& engine) {
-    for (int i = 0; i < results.size(); i++) {
+    for (size_t i = 0; i < results.size(); i++) {
         const SearchResult& result = results[i];
         const WebResource& resource = engine.fetch_result(result);
 
