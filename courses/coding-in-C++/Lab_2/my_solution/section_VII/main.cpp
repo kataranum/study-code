@@ -1,5 +1,7 @@
 #include <iostream>
+#include <vector>
 #include "search_engine.hpp"
+#include "search_query.hpp"
 #include "web_resource.hpp"
 
 SearchEngine init_search_engine() {
@@ -35,6 +37,41 @@ SearchEngine init_search_engine() {
     return engine;
 }
 
+void print_results_info(const std::vector<SearchResult>& results, SearchEngine& engine) {
+    for (int i = 0; i < results.size(); i++) {
+        const SearchResult& result = results[i];
+        const WebResource& resource = engine.fetch_result(result);
+
+        std::cout << "Result " << i+1 << ":" << std::endl;
+        std::cout << "\"" << resource.get_address() << "\"" << std::endl;
+        std::cout << result.occurances << " occurances found" << std::endl;
+        std::cout << "New view count is " << resource.get_views() << "\n" << std::endl;
+    }
+}
+
 int main(void) {
+    SearchEngine engine = init_search_engine();
+
+    std::cout << "Search 1: Cake" << std::endl;
+    SearchQuery query_1 = SearchQuery("Cake");
+    std::cout << "Search 2: Rust" << std::endl;
+    SearchQuery query_2 = SearchQuery("Rust");
+    std::cout << "Search 3: C++" << std::endl;
+    SearchQuery query_3 = SearchQuery("C++", 2);
+    std::cout << std::endl;
+
+    std::vector<SearchResult> result_1 = engine.process_query(query_1);
+    std::vector<SearchResult> result_2 = engine.process_query(query_2);
+    std::vector<SearchResult> result_3 = engine.process_query(query_3);
+
+    std::cout << "Search 1 has " << result_1.size() << " results." << std::endl;
+    std::cout << "Search 2 has " << result_2.size() << " results." << std::endl;
+    std::cout << "Search 3 has " << result_3.size() << " results." << std::endl;
+    std::cout << std::endl;
+
+    print_results_info(result_1, engine);
+    print_results_info(result_2, engine);
+    print_results_info(result_3, engine);
+
     return 0;
 }
