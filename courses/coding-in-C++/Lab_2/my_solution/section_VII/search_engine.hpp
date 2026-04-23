@@ -37,6 +37,15 @@ public:
     SearchEngine();
 
     /**
+     * @brief Try to upload the given resource into the database
+     * 
+     * @param resource Given, fully initialized WebResource
+     * @return true Upload successful, database updated
+     * @return false Upload failure (duplicate address), database remains untouched
+     */
+    bool upload_web_resource(const WebResource& resource);
+
+    /**
      * @brief Get how many resources are available in total
      * 
      * @return size_t 

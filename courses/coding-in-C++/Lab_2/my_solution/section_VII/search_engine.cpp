@@ -9,6 +9,19 @@ SearchEngine::SearchEngine() :
     total_queries(0)
 { }
 
+bool SearchEngine::upload_web_resource(const WebResource& resource) {
+    for (int i = 0; i < this->database.size(); i++) {
+        const WebResource& existing_resource = this->database[i];
+
+        if (existing_resource.get_address() == resource.get_address()) {
+            return false;
+        }
+    }
+
+    this->database.push_back(resource);
+    return true;
+}
+
 size_t SearchEngine::get_amount_resources() const {
     return this->database.size();
 }
