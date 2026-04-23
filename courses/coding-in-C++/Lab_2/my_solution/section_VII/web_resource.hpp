@@ -5,6 +5,9 @@
 #include <string>
 
 class WebResource {
+public:
+    const uint64_t POPULAR_MIN_VIEWS = 1000000;
+
 private:
     std::string address;
     std::string content;

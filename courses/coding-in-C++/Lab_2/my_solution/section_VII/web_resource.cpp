@@ -22,3 +22,7 @@ WebResource& WebResource::increment_views() {
     this->views++;
     return *this;
 }
+
+bool WebResource::is_popular() const {
+    return this->views >= this->POPULAR_MIN_VIEWS;
+}
