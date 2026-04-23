@@ -10,6 +10,9 @@ public:
     uint64_t max_results;
 
 public:
+    SearchQuery(const std::string& input, uint64_t max_results);
+    SearchQuery(const std::string& input);
+
     bool is_valid() const;
 };
 
