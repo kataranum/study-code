@@ -17,8 +17,10 @@ uint64_t SearchEngine::get_total_queries() const {
     return this->total_queries;
 }
 
-const WebResource& SearchEngine::fetch_result(const SearchResult& result) const {
-    return this->database[result.web_index];
+const WebResource& SearchEngine::fetch_result(const SearchResult& result) {
+    WebResource& resource = this->database[result.web_index];
+    resource.increment_views();
+    return resource;
 }
 
 std::vector<std::string> split_string(std::string input, char split) {

@@ -23,7 +23,7 @@ public:
     size_t get_amount_resources() const;
     uint64_t get_total_queries() const;
 
-    const WebResource& fetch_result(const SearchResult& result) const;
+    const WebResource& fetch_result(const SearchResult& result);
 
     std::vector<SearchResult> process_query(const SearchQuery& query);
 };
