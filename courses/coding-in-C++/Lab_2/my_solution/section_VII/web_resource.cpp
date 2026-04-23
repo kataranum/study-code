@@ -17,3 +17,8 @@ const std::string& WebResource::get_content() const {
 uint64_t WebResource::get_views() const {
     return this->views;
 }
+
+WebResource& WebResource::increment_views() {
+    this->views++;
+    return *this;
+}
