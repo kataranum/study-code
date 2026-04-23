@@ -63,6 +63,8 @@ std::vector<SearchResult> SearchEngine::process_query(const SearchQuery& query) 
     std::vector<std::string> tokens = split_string(query.input, ' ');
     std::vector<SearchResult> results = std::vector<SearchResult>();
 
+    this->total_queries++;
+
     for (uint32_t i = 0; i < this->database.size(); i++) {
         WebResource& resource = this->database[i];
 
