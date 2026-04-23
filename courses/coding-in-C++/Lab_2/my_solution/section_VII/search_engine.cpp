@@ -1,6 +1,8 @@
 #include "search_engine.hpp"
 #include "search_query.hpp"
 #include "web_resource.hpp"
+#include <algorithm>
+#include <cctype>
 #include <vector>
 #include <iostream>
 
@@ -34,6 +36,15 @@ const WebResource& SearchEngine::fetch_result(const SearchResult& result) {
     WebResource& resource = this->database[result.web_index];
     resource.increment_views();
     return resource;
+}
+
+std::string str_to_lower(std::string str) {
+    // shamelessly copied from here :P
+    // https://stackoverflow.com/questions/313970/how-to-convert-an-instance-of-stdstring-to-lower-case
+    std::transform(str.begin(), str.end(), str.begin(),
+        [](unsigned char c){ return std::tolower(c); });
+    
+    return str;
 }
 
 std::vector<std::string> split_string(std::string input, char split) {
@@ -73,6 +84,7 @@ std::vector<SearchResult> SearchEngine::process_query(const SearchQuery& query) 
         return std::vector<SearchResult>();
     }
 
+    std::string input_lower = str_to_lower(query.input);
     std::vector<std::string> tokens = split_string(query.input, ' ');
     std::vector<SearchResult> results = std::vector<SearchResult>();
 
@@ -88,7 +100,7 @@ std::vector<SearchResult> SearchEngine::process_query(const SearchQuery& query) 
         for (int j = 0; j < tokens.size(); j++) {
             const std::string& token = tokens[j];
             int32_t token_occurances = find_occurances(
-                resource.get_content(),
+                str_to_lower(resource.get_content()),
                 token
             );
 
