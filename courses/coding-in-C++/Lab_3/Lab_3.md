@@ -185,6 +185,7 @@ To test the classes in main:
 ### 💬 Reflection Questions
 
 1. What would change if the access specifier in the inheritance declaration is deleted?
+
 2. Why is it important to call the base class constructor?  
 
 ## 🟡 Section III: Game Character System – Inheritance and Class Relationships
@@ -231,17 +232,22 @@ A `Mage` has:
 
 - mana points
 
-Both types can regenerate their specific points.
+Both types can regenerate their specific points and have a method to display their status including:
+- name
+- their type
+- health points
+- magic points or weapon skill points
+- level
+- current weapon
+- number of items in inventory compared to maximum slot number (e.g. 4/10)
 
 In addition, there are jobs with specific skills which are based on exactly one of these two character types such as:
 - Thief (can steal from enemies)
 - Healer (can heal other characters and himself)
 
-while others are based on both types at the same time such as:
-- Paladin (can heal and perform a shield bash)
-
 The minimum level is 1 while the maximum level is 10.
 To reach the next level, a level specific experience point limit has to be surpassed.
+In that case, the method levelUp() should be called.
 
 Every job skill should return the calling object so that multiple skills can be called fluently in sequence.
 
@@ -269,47 +275,15 @@ Your UML diagram must include:
 - inheritance relationships
 - composition, aggregation, or association where appropriate
 - multiplicities
-- marked static and readonly attributes, methods and parameters
+- at least one static attribute
+- marked readonly attributes, methods and/or parameters (use direction for that)
+
+Explain why you selected the relation types you used between the created classes (e.g. in a text area within your diagram).
 
 ---
 
-### 🟡 Task Part 2 – Implement the Base Class
+### 🟡 Task Part 2 – Implementation
 
-Implement the class `Character`.
-
-The class should contain:
-
-- protected attributes:
-  - `name`
-  - `health`
-  - `level`
-
-- public methods:
-  - constructor with parameters
-  - `printInfo()`
-  - `levelUp()`
-
-The method `levelUp()` should increase the level by 1.
+Implement the designed UML architecture and write the logic based on the requirements.
 
 ---
-
-### 🟡 Task Part 3 – Implement Derived Classes
-
-Implement the classes:
-
-- `Warrior`
-- `Mage`
-
-Both classes should inherit publicly from `Character`.
-
-Each derived class must:
-
-- call the base class constructor using an initializer list
-- initialize its own additional attribute
-- implement a method `printRole()`
-
-Example output:
-
-```text
-Role: Warrior
-Armor: 50
