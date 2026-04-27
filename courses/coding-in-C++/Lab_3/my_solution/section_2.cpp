@@ -8,7 +8,9 @@ protected:
     int id;
 
 public:
-    User(std::string name, int id);
+    User(std::string name, int id)
+        : name(name), id(id) {}
+
     void printInfo() {
         std::cout << "Name: " << this->name << std::endl;
         std::cout << "ID: " << this->id << std::endl;
@@ -20,6 +22,9 @@ protected:
     unsigned int courses_taken;
 
 public:
+    Student(std::string name, int id)
+        : User(name, id), courses_taken(0) {}
+
     void printRole() {
         std::cout
             << "Student ("
@@ -38,6 +43,9 @@ protected:
     unsigned int courses_instructed;
 
 public:
+    Instructor(std::string name, int id)
+        : User(name, id), courses_instructed(0) {}
+
     void printRole() {
         std::cout
             << "Instructor ("
