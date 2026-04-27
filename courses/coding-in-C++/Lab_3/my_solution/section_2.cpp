@@ -58,3 +58,16 @@ public:
             << std::endl;
     }
 };
+
+int main(void) {
+    Student student = Student("stud", 123);
+    Instructor instructor = Instructor("inst", 456);
+
+    student.printInfo();
+    instructor.printInfo();
+
+    student.printRole();
+    instructor.printRole();
+
+    return 0;
+}
