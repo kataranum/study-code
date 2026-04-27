@@ -1,11 +1,52 @@
 #include <string>
+#include <iostream>
 
 class User {
 protected:
+    // protected is used so that these are available in derived classes
     std::string name;
     int id;
 
 public:
     User(std::string name, int id);
-    void printInfo();
+    void printInfo() {
+        std::cout << "Name: " << this->name << std::endl;
+        std::cout << "ID: " << this->id << std::endl;
+    }
+};
+
+class Student : public User {
+protected:
+    unsigned int courses_taken;
+
+public:
+    void printRole() {
+        std::cout
+            << "Student ("
+            << this->id
+            << ", '"
+            << this->name
+            << "') took "
+            << this->courses_taken
+            << " courses."
+            << std::endl;
+    }
+};
+
+class Instructor : public User {
+protected:
+    unsigned int courses_instructed;
+
+public:
+    void printRole() {
+        std::cout
+            << "Instructor ("
+            << this->id
+            << ", '"
+            << this->name
+            << "') has instructed "
+            << this->courses_instructed
+            << " courses."
+            << std::endl;
+    }
 };
