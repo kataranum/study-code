@@ -17,11 +17,15 @@ public:
     }
 };
 
+// without the `public` the compiler defaults to `private` and we get
+// compiler errors because we can't access the User fields.
 class Student : public User {
 protected:
     unsigned int courses_taken;
 
 public:
+    // it's important to call the base class constructor so the derived
+    // fields also get initialized properly
     Student(std::string name, int id)
         : User(name, id), courses_taken(0) {}
 
