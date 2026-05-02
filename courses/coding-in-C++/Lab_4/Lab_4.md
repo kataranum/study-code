@@ -1,4 +1,4 @@
-# Lab 4: Polymorphie in C++
+# Lab 4: Polymorphism in C++
 
 This lab focuses on understanding **polymorphism** in C++.
 
@@ -261,3 +261,179 @@ int main()
     return 0;
 }
 ```
+
+## 🔴 Section IV: Complex Task – Production System: Quality Control Pipeline
+
+### 🧩 Task Description
+
+You are working in a **modern manufacturing plant** where products are automatically inspected before leaving the production line.
+
+Each product must pass through a **quality control pipeline** consisting of different inspection steps.
+
+The system must be flexible because:
+
+- new inspection methods are added frequently
+- different products require different inspections
+- some inspections share common behavior
+- other capabilities should be modeled as contracts/interfaces
+
+---
+
+## 🎯 Your Task
+
+Design and implement a system that models this **quality control pipeline**.
+
+You must first create a **UML class diagram** and then implement the design in C++.
+
+---
+
+## 📘 Requirements
+
+Your solution must contain:
+
+1. at least **one abstract class**
+2. at least **one interface**
+3. at least **two concrete product classes**
+4. at least **three concrete inspection classes**
+5. a pipeline that stores and executes inspections polymorphically
+
+---
+
+## 🧩 UML Design Task
+
+Create a UML class diagram that shows:
+
+- all classes and interfaces
+- inheritance relationships
+- interface realization relationships
+- important attributes
+- important methods
+- abstract methods marked correctly
+- the interface marked with `<<interface>>`
+- the abstract class marked with `{abstract}` or `<<abstract>>`
+
+---
+
+## 🏭 Scenario Details
+
+Each product:
+
+- has a product ID
+- has a name
+- may provide different measurable values such as:
+  - weight
+  - temperature
+  - voltage
+  - visual defect status
+
+Examples of inspection steps:
+
+- **Weight Check**  
+  Checks whether the product weight is within a tolerance.
+
+- **Visual Inspection**  
+  Checks whether visible defects were detected.
+
+- **Temperature Test**  
+  Checks whether the product temperature is within limits.
+
+- **Electrical Test**  
+  Checks voltage or current behavior.
+
+---
+
+## 🧠 Design Constraints
+
+Your design should include:
+
+### Abstract Class
+
+Use an abstract base class, for example:
+
+```cpp
+class Inspection
+{
+public:
+    virtual bool inspect(const Product& product) const = 0;
+    virtual std::string get_name() const = 0;
+    virtual ~Inspection() = default;
+};
+```
+
+This class represents a general inspection step.
+
+---
+
+### Interface
+
+Add at least one interface that describes an additional capability.
+
+Example:
+
+```cpp
+class Reportable
+{
+public:
+    virtual std::string generate_report() const = 0;
+    virtual ~Reportable() = default;
+};
+```
+
+Possible interface ideas:
+
+- `Reportable`
+- `Printable`
+- `Calibratable`
+- `Loggable`
+- `Serializable`
+
+---
+
+## 💻 Implementation Task
+
+Implement your UML design in C++.
+
+Your program should:
+
+1. create several products
+2. create several inspection objects
+3. store inspection objects through base-class pointers or references
+4. execute all inspections on each product
+5. print whether each product passes or fails
+6. use polymorphism instead of `if/switch` over inspection types
+
+---
+
+## 📌 Example Output
+
+```text
+Product: Motor A
+- Weight Check: PASS
+- Temperature Test: FAIL
+- Visual Inspection: PASS
+
+Final Result: REJECTED
+```
+
+---
+
+## 🧠 Reflection Questions
+
+1. Which class in your design is abstract and why?
+2. Which interface did you use and what contract does it define?
+3. Where is dynamic polymorphism used?
+4. Why would an `if/switch` solution be less maintainable?
+5. How does your design support adding new inspection types?
+6. What changes are needed if a new inspection, e.g. `LaserInspection`, is added?
+
+---
+
+## ⭐ Optional Challenge
+
+Extend your system so that:
+
+- different product types use different inspection pipelines
+- inspections return a score instead of only `PASS` / `FAIL`
+- failed inspections provide a reason
+- the pipeline generates a complete quality report
+- smart pointers are used instead of raw pointers
