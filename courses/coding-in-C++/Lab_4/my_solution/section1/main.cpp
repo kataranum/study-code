@@ -6,7 +6,7 @@ int main(void) {
     vec.print();
 
     double m = vec.magnitude();
-    int m_rounded = vec.magnitude(4);
+    double m_rounded = vec.magnitude(2);
 
     std::cout << "Magnitude: " << m << std::endl;
     std::cout << "Rounded: " << m_rounded << std::endl;

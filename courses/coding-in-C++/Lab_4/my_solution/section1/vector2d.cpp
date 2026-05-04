@@ -20,7 +20,7 @@ double Vector2D::magnitude()
     return sqrt(this->x*this->x + this->y*this->y);
 }
 
-int Vector2D::magnitude(int precision)
+double Vector2D::magnitude(int precision)
 {
     double factor = std::pow(10.0, precision);
     return std::round(this->magnitude() * factor) / factor;

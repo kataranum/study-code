@@ -13,7 +13,7 @@ public:
     void print();
 
     double magnitude();
-    int magnitude(int precision);
+    double magnitude(int precision);
 };
 
 #endif
