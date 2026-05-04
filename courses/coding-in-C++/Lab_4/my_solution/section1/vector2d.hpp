@@ -14,6 +14,12 @@ public:
 
     double magnitude();
     double magnitude(int precision);
+
+    Vector2D operator+(const Vector2D& other);
+    void operator+=(const Vector2D& other);
 };
+
+Vector2D operator*(const Vector2D& vec, double scalar);
+Vector2D operator*(double scalar, const Vector2D& vec);
 
 #endif

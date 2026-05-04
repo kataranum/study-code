@@ -25,3 +25,25 @@ double Vector2D::magnitude(int precision)
     double factor = std::pow(10.0, precision);
     return std::round(this->magnitude() * factor) / factor;
 }
+
+Vector2D Vector2D::operator+(const Vector2D& other)
+{
+    *this += other;
+    return *this;
+}
+
+void Vector2D::operator+=(const Vector2D& other)
+{
+    this->x += other.x;
+    this->y += other.y;
+}
+
+Vector2D operator*(const Vector2D& vec, double scalar)
+{
+    return Vector2D(vec.x * scalar, vec.y * scalar);
+}
+
+Vector2D operator*(double scalar, const Vector2D& vec)
+{
+    return vec * scalar;
+}
