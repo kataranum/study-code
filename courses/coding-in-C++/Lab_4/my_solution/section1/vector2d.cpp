@@ -28,8 +28,10 @@ double Vector2D::magnitude(int precision) const
 
 Vector2D Vector2D::operator+(const Vector2D& other) const
 {
-    *this += other;
-    return *this;
+    return Vector2D(
+        this->x + other.x,
+        this->y + other.y
+    );
 }
 
 void Vector2D::operator+=(const Vector2D& other)
@@ -55,7 +57,10 @@ std::ostream& operator<<(std::ostream& out, const Vector2D& vec)
 
 Vector2D operator*(const Vector2D& vec, double scalar)
 {
-    return Vector2D(vec.x * scalar, vec.y * scalar);
+    return Vector2D(
+        vec.x * scalar,
+        vec.y * scalar
+    );
 }
 
 Vector2D operator*(double scalar, const Vector2D& vec)
