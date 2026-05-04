@@ -13,8 +13,7 @@ int main(void) {
 
     Vector2D vec2 = Vector2D(2.0, 0.0);
 
-    Vector2D tmp = vec * 3.0;
-    Vector2D tmp2 = 3.0 * vec;
+    std::cout << (vec + vec2) * 3.0 << std::endl;
 
     return 0;
 }

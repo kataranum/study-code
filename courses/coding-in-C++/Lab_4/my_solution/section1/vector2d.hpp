@@ -1,6 +1,8 @@
 #ifndef VECTOR2D_H
 #define VECTOR2D_H
 
+#include <ostream>
+
 class Vector2D {
 public:
     double x;
@@ -21,5 +23,7 @@ public:
 
 Vector2D operator*(const Vector2D& vec, double scalar);
 Vector2D operator*(double scalar, const Vector2D& vec);
+
+std::ostream& operator<<(std::ostream& out, const Vector2D& vec);
 
 #endif
