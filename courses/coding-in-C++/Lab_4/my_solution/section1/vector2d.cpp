@@ -38,6 +38,16 @@ void Vector2D::operator+=(const Vector2D& other)
     this->y += other.y;
 }
 
+bool Vector2D::operator==(const Vector2D& other)
+{
+    return (this->x == other.x) && (this->y == other.y);
+}
+
+bool Vector2D::operator!=(const Vector2D& other)
+{
+    return (this->x != other.x) || (this->y != other.y);
+}
+
 std::ostream& operator<<(std::ostream& out, const Vector2D& vec)
 {
     return out << "(" << vec.x << ", " << vec.y << ")";
