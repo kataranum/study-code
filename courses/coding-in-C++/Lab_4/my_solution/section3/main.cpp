@@ -4,7 +4,7 @@
 class AudioFile
 {
 public:
-    void play() const
+    virtual void play() const
     {
         std::cout << "Playing generic audio file\n";
     }
@@ -31,12 +31,12 @@ public:
     {
     }
 
-    void play()
+    void play() const override
     {
         std::cout << "Playing MP3 by " << artist << "\n";
     }
 
-    void print_info()
+    void print_info() const override
     {
         std::cout << "MP3 file by " << artist << "\n";
     }
@@ -50,12 +50,12 @@ public:
 class WAVFile : public AudioFile
 {
 public:
-    void play() const
+    void play() const override
     {
         std::cout << "Playing WAV file\n";
     }
 
-    void print_info() const
+    void print_info() const override
     {
         std::cout << "Uncompressed WAV file\n";
     }
