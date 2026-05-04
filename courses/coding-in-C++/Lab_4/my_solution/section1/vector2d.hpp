@@ -11,6 +11,9 @@ public:
     Vector2D(double x, double y);
 
     void print();
+
+    double magnitude();
+    int magnitude(int precision);
 };
 
 #endif
