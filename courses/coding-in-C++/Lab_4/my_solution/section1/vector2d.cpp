@@ -10,23 +10,23 @@ Vector2D::Vector2D(double x, double y)
     : x(x), y(y)
 { }
 
-void Vector2D::print()
+void Vector2D::print() const
 {
     std::cout << "Vector2D(" << this->x << ", " << this->y << ")" << std::endl;
 }
 
-double Vector2D::magnitude()
+double Vector2D::magnitude() const
 {
     return sqrt(this->x*this->x + this->y*this->y);
 }
 
-double Vector2D::magnitude(int precision)
+double Vector2D::magnitude(int precision) const
 {
     double factor = std::pow(10.0, precision);
     return std::round(this->magnitude() * factor) / factor;
 }
 
-Vector2D Vector2D::operator+(const Vector2D& other)
+Vector2D Vector2D::operator+(const Vector2D& other) const
 {
     *this += other;
     return *this;
@@ -38,12 +38,12 @@ void Vector2D::operator+=(const Vector2D& other)
     this->y += other.y;
 }
 
-bool Vector2D::operator==(const Vector2D& other)
+bool Vector2D::operator==(const Vector2D& other) const
 {
     return (this->x == other.x) && (this->y == other.y);
 }
 
-bool Vector2D::operator!=(const Vector2D& other)
+bool Vector2D::operator!=(const Vector2D& other) const
 {
     return (this->x != other.x) || (this->y != other.y);
 }
