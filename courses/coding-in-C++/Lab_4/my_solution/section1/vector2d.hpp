@@ -20,6 +20,9 @@ public:
     Vector2D operator+(const Vector2D& other);
     void operator+=(const Vector2D& other);
 
+    // be careful with double equality. floating point numbers are approximated
+    // values and may not be equal in certain situations even though we'd expect
+    // them to be.
     bool operator==(const Vector2D& other);
     bool operator!=(const Vector2D& other);
 };
