@@ -1,5 +1,6 @@
 #include <exception>
 #include <string>
+#include <iostream>
 
 class ExEmpty : public std::exception {};
 
@@ -11,7 +12,7 @@ class ExInvalid : public std::exception {};
 
 class ConfigLoader {
 public:
-    void load(std::string filename) {
+    static void load(std::string filename) {
         if (filename.empty()) {
             throw ExEmpty();
         }
@@ -36,3 +37,44 @@ public:
         }
     }
 };
+
+int main(void) {
+    try {
+        ConfigLoader::load("");
+    }
+    catch (ExEmpty e) {
+        std::cout << "Error: Filename cannot be empty" << std::endl;
+    }
+
+    try {
+        ConfigLoader::load("abc");
+    }
+    catch (ExFileSuffix e) {
+        std::cout << "Error: File suffix is not .cfg" << std::endl;
+    }
+
+    try {
+        ConfigLoader::load("missing.cfg");
+    }
+    catch (ExMissing e) {
+        std::cout << "Error: Missing config file" << std::endl;
+    }
+
+    try {
+        ConfigLoader::load("invalid.cfg");
+    }
+    catch (ExInvalid e) {
+        std::cout << "Error: Invalid config" << std::endl;
+    }
+
+    try {
+        ConfigLoader::load("normal.cfg");
+        std::cout << "Normal config loaded successfully" << std::endl;
+    }
+    catch (std::exception e) {
+        std::cout << "Error: This actually shouldn't trigger D:" << std::endl;
+        return 1;
+    }
+
+    return 0;
+}
