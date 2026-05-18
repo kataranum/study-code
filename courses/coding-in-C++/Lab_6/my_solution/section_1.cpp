@@ -1,11 +1,11 @@
 #include <exception>
 #include <string>
 
-class ExMissing : public std::exception {
+class ExEmpty : public std::exception {
 
 };
 
-class ExInvalid : public std::exception {
+class ExFileSuffix : public std::exception {
 
 };
 
@@ -13,7 +13,7 @@ class ConfigLoader {
 public:
     void load(std::string filename) {
         if (filename.empty()) {
-            throw ExMissing();
+            throw ExEmpty();
         }
 
         std::string expected_end = ".cfg";
@@ -22,7 +22,7 @@ public:
                 expected_end.length(),
                 expected_end  
         )) {
-            throw ExInvalid();
+            throw ExFileSuffix();
         }
     }
 };
