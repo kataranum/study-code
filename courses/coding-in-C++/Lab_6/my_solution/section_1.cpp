@@ -17,12 +17,8 @@ public:
             throw ExEmpty();
         }
 
-        std::string expected_end = ".cfg";
-        if (!filename.compare(
-                filename.length() - expected_end.length(),
-                expected_end.length(),
-                expected_end  
-        )) {
+        if (filename.length() < 4 ||
+            filename.substr(filename.length() - 4) != ".cfg") {
             throw ExFileSuffix();
         }
 
