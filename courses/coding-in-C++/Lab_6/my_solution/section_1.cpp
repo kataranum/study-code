@@ -37,6 +37,8 @@ public:
 int main(void) {
     try {
         ConfigLoader::load("");
+        std::cout << "(This should throw an exception)" << std::endl;
+        return 1;
     }
     catch (ExEmpty e) {
         std::cout << "Error: Filename cannot be empty" << std::endl;
@@ -44,6 +46,8 @@ int main(void) {
 
     try {
         ConfigLoader::load("abc");
+        std::cout << "(This should throw an exception)" << std::endl;
+        return 1;
     }
     catch (ExFileSuffix e) {
         std::cout << "Error: File suffix is not .cfg" << std::endl;
@@ -51,6 +55,8 @@ int main(void) {
 
     try {
         ConfigLoader::load("missing.cfg");
+        std::cout << "(This should throw an exception)" << std::endl;
+        return 1;
     }
     catch (ExMissing e) {
         std::cout << "Error: Missing config file" << std::endl;
@@ -58,6 +64,8 @@ int main(void) {
 
     try {
         ConfigLoader::load("invalid.cfg");
+        std::cout << "(This should throw an exception)" << std::endl;
+        return 1;
     }
     catch (ExInvalid e) {
         std::cout << "Error: Invalid config" << std::endl;
