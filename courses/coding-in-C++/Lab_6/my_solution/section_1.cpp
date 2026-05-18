@@ -12,7 +12,7 @@ class ExInvalid : public std::exception {};
 
 class ConfigLoader {
 public:
-    static void load(std::string filename) {
+    static void load(const std::string& filename) {
         if (filename.empty()) {
             throw ExEmpty();
         }
@@ -40,7 +40,7 @@ int main(void) {
         std::cout << "(This should throw an exception)" << std::endl;
         return 1;
     }
-    catch (ExEmpty e) {
+    catch (const ExEmpty& e) {
         std::cout << "Error: Filename cannot be empty" << std::endl;
     }
 
@@ -49,7 +49,7 @@ int main(void) {
         std::cout << "(This should throw an exception)" << std::endl;
         return 1;
     }
-    catch (ExFileSuffix e) {
+    catch (const ExFileSuffix& e) {
         std::cout << "Error: File suffix is not .cfg" << std::endl;
     }
 
@@ -58,7 +58,7 @@ int main(void) {
         std::cout << "(This should throw an exception)" << std::endl;
         return 1;
     }
-    catch (ExMissing e) {
+    catch (const ExMissing& e) {
         std::cout << "Error: Missing config file" << std::endl;
     }
 
@@ -67,7 +67,7 @@ int main(void) {
         std::cout << "(This should throw an exception)" << std::endl;
         return 1;
     }
-    catch (ExInvalid e) {
+    catch (const ExInvalid& e) {
         std::cout << "Error: Invalid config" << std::endl;
     }
 
@@ -75,7 +75,7 @@ int main(void) {
         ConfigLoader::load("normal.cfg");
         std::cout << "Normal config loaded successfully" << std::endl;
     }
-    catch (std::exception e) {
+    catch (const std::exception& e) {
         std::cout << "Error: This actually shouldn't trigger D:" << std::endl;
         return 1;
     }
