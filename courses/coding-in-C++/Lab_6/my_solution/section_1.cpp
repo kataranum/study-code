@@ -15,5 +15,14 @@ public:
         if (filename.empty()) {
             throw ExMissing();
         }
+
+        std::string expected_end = ".cfg";
+        if (!filename.compare(
+                filename.length() - expected_end.length(),
+                expected_end.length(),
+                expected_end  
+        )) {
+            throw ExInvalid();
+        }
     }
 };
