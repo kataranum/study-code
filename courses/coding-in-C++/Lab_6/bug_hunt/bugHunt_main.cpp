@@ -34,7 +34,8 @@ int main()
     ego_vehicle.print_status();
 
     std::cout << "--- Emergency brake system test ---\n";
-    front_sensor.set_distance(25.0);
+    // Fix 10: Reduce distance to actually trigger emergency brake
+    front_sensor.set_distance(5.0);
     emergency_brake.evaluate(ego_vehicle, front_sensor);
     ego_vehicle.print_status();
 
