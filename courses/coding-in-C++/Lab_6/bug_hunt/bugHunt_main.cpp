@@ -8,10 +8,18 @@ int main()
 {
     Vehicle ego_vehicle("Vector X1");
 
-    auto front_sensor = std::make_shared<DistanceSensor>(DistanceSensor("front", 25.0));
-    auto rear_sensor = std::make_shared<DistanceSensor>(DistanceSensor("rear", 1.2));
-    auto left_sensor = std::make_shared<DistanceSensor>(DistanceSensor("left", 0.8));
-    auto right_sensor = std::make_shared<DistanceSensor>(DistanceSensor("right", 3.0));
+    auto front_sensor = std::make_shared<DistanceSensor>(
+        DistanceSensor("front", 25.0)
+    );
+    auto rear_sensor = std::make_shared<DistanceSensor>(
+        DistanceSensor("rear", 1.2)
+    );
+    auto left_sensor = std::make_shared<DistanceSensor>(
+        DistanceSensor("left", 0.8)
+    );
+    auto right_sensor = std::make_shared<DistanceSensor>(
+        DistanceSensor("right", 3.0)
+    );
 
     EmergencyBrakeSystem emergency_brake(10.0);
     LaneKeepingAssist lane_assist(0.4, 5.0);
