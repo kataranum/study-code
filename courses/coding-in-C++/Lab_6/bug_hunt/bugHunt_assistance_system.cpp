@@ -128,8 +128,9 @@ void AdaptiveCruiseControl::evaluate(Vehicle &vehicle,
 
     if (front_sensor.get_distance() < minimum_distance_m)
     {
-        std::cout << "[AdaptiveCruiseControl] Vehicle ahead is close. Accelerating.\n";
-        vehicle.accelerate(5.0);
+        // Fix 9: Brake when too close
+        std::cout << "[AdaptiveCruiseControl] Vehicle ahead is close. Braking.\n";
+        vehicle.brake(5.0);
     }
     else if (vehicle.get_speed() < target_speed_kmh)
     {
