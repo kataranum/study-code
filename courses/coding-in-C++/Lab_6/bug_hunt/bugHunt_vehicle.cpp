@@ -1,4 +1,4 @@
-// fix: fix wrong filename "vehicle.hpp"
+// Fix: fix wrong filename "vehicle.hpp"
 #include "bugHunt_vehicle.hpp"
 
 Vehicle::Vehicle(const std::string &vehicle_model)

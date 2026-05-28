@@ -5,6 +5,9 @@
 #include <stdexcept>
 #include <string>
 
+// Fix: Add missing constant
+#define MAX_SPEED_KMH 180
+
 class Vehicle
 {
 private:
