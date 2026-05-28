@@ -47,7 +47,12 @@ bool DistanceSensor::operator<(const DistanceSensor &other) const
 
 bool DistanceSensor::is_exactly_at_warning_distance(double warning_distance) const
 {
-    return measured_distance_m == warning_distance;
+    // Fix 6: Use approximation because float equality is unreliable
+    constexpr double EPSILON = 0.000001;
+
+    double delta = std::abs(measured_distance_m - warning_distance);
+
+    return delta < EPSILON;
 }
 
 void DistanceSensor::print_info() const
