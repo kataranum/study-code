@@ -22,6 +22,8 @@ int main()
     parking_assistant.add_sensor(left_sensor);
     parking_assistant.add_sensor(right_sensor);
 
+    parking_assistant.add_sensor(front_sensor);
+
     std::cout << "--- Initial vehicle status ---\n";
     ego_vehicle.print_status();
 
@@ -52,7 +54,7 @@ int main()
     ego_vehicle.brake(100.0);
     ego_vehicle.print_status();
 
-    std::cout << "Rear sensor references: " << rear_sensor.use_count() << std::endl;
+    std::cout << "Front sensor references: " << front_sensor.use_count() << std::endl;
 
     return 0;
 }
