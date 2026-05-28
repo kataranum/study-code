@@ -25,7 +25,8 @@ public:
 
     double get_distance() const;
     bool is_active() const;
-    std::string get_position() const;
+    // Fix 4: String const reference to avoid expensive copy
+    const std::string& get_position() const;
 
     bool operator<(const DistanceSensor &other) const;
     bool is_exactly_at_warning_distance(double warning_distance) const;

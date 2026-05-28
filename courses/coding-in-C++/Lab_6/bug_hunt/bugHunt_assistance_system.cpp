@@ -33,7 +33,8 @@ bool DistanceSensor::is_active() const
     return active;
 }
 
-std::string DistanceSensor::get_position() const
+// Fix 4: String const reference to avoid expensive copy
+const std::string& DistanceSensor::get_position() const
 {
     return position;
 }
