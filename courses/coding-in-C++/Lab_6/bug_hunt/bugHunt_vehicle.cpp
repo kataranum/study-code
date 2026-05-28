@@ -1,5 +1,6 @@
 // Fix 1: fix wrong filename "vehicle.hpp"
 #include "bugHunt_vehicle.hpp"
+#include <iostream>
 
 Vehicle::Vehicle(const std::string &vehicle_model)
     : model(vehicle_model),

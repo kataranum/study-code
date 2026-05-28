@@ -1,8 +1,7 @@
 #ifndef VEHICLE_HPP
 #define VEHICLE_HPP
 
-#include <iostream>
-#include <stdexcept>
+// Fix 7: Move imports into source to not include them everywhere
 #include <string>
 
 // Fix 2: Add missing constant

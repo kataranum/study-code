@@ -1,4 +1,5 @@
 #include "bugHunt_assistance_system.hpp"
+#include <iostream>
 
 DistanceSensor::DistanceSensor(const std::string &sensor_position,
                                double initial_distance_m)

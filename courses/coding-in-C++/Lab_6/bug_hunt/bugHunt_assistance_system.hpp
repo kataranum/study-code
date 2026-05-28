@@ -1,7 +1,7 @@
 #ifndef ASSISTANCE_SYSTEM_HPP
 #define ASSISTANCE_SYSTEM_HPP
 
-#include <iostream>
+// Fix 7: Move imports into source to not include them everywhere
 #include <string>
 #include <vector>
 
