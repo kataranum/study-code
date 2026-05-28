@@ -52,5 +52,7 @@ int main()
     ego_vehicle.brake(100.0);
     ego_vehicle.print_status();
 
+    std::cout << "Rear sensor references: " << rear_sensor.use_count() << std::endl;
+
     return 0;
 }
