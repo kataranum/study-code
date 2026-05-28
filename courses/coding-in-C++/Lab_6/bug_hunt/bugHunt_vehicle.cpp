@@ -42,6 +42,9 @@ void Vehicle::brake(double amount_kmh)
     {
         speed_kmh = 0.0;
     }
+
+    // Fix 8: add missing brake light
+    brake_light_on = true;
 }
 
 void Vehicle::steer(double angle)
