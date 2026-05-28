@@ -5,7 +5,7 @@
 #include <stdexcept>
 #include <string>
 
-// Fix: Add missing constant
+// Fix 2: Add missing constant
 #define MAX_SPEED_KMH 180
 
 class Vehicle
@@ -29,7 +29,8 @@ public:
     double get_steering_angle() const;
     double get_lane_offset() const;
 
-    std::string &get_model();
+    // Fix 3: Match function signature with source file
+    const std::string& get_model() const;
 
     bool is_brake_light_on() const;
 

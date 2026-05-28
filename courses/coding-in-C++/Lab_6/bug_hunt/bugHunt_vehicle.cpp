@@ -1,4 +1,4 @@
-// Fix: fix wrong filename "vehicle.hpp"
+// Fix 1: fix wrong filename "vehicle.hpp"
 #include "bugHunt_vehicle.hpp"
 
 Vehicle::Vehicle(const std::string &vehicle_model)
@@ -68,7 +68,8 @@ double Vehicle::get_lane_offset() const
     return lane_offset_m;
 }
 
-const std::string &Vehicle::get_model() const
+// Fix 3: Match function signature with header
+const std::string& Vehicle::get_model() const
 {
     return model;
 }
