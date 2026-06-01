@@ -37,6 +37,9 @@ InjuredPlayer::InjuredPlayer(const std::string &name, int age)
 {
 }
 
+// VIOLATION of Liskov Substitution (L)
+// Injuired player has weaker constraint; player can train with negative
+// intensity
 void InjuredPlayer::train(int intensity)
 {
     if (intensity > 30)
