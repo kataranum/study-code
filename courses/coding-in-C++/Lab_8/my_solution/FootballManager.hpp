@@ -9,6 +9,9 @@ private:
     std::string name;
     int age;
 
+protected:
+    bool CheckIntensity(int intensity);
+
 public:
     Player(const std::string &name, int age);
     virtual ~Player() = default;

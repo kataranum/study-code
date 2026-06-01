@@ -21,11 +21,19 @@ int Player::get_age() const
     return age;
 }
 
-void Player::train(int intensity)
-{
+bool Player::CheckIntensity(int intensity) {
     if (intensity < 0 || intensity > 100)
     {
         std::cout << "Invalid intensity. Use a value between 0 and 100.\n";
+        return false;
+    }
+
+    return true;
+}
+
+void Player::train(int intensity)
+{
+    if (!CheckIntensity(intensity)) {
         return;
     }
 
@@ -40,8 +48,13 @@ InjuredPlayer::InjuredPlayer(const std::string &name, int age)
 // VIOLATION of Liskov Substitution (L)
 // Injuired player has weaker constraint; player can train with negative
 // intensity
+// (fixed)
 void InjuredPlayer::train(int intensity)
 {
+    if (!CheckIntensity(intensity)) {
+        return;
+    }
+
     if (intensity > 30)
     {
         std::cout << "ERROR: Injured players only accept intensity values up to 30.\n";
