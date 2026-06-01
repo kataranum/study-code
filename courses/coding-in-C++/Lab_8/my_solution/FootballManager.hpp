@@ -52,6 +52,8 @@ public:
     void send(const Player &player, const std::string &message);
 };
 
+// VIOLATION of Single Responsibility
+// FootballManager does all kinds of stuff with player, should be seperated
 class FootballManager : public ClubService
 {
 private:
