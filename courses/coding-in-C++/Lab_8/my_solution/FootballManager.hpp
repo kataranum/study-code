@@ -59,6 +59,8 @@ class FootballManager : public ClubService
 private:
     void select_strategy(const std::string &strategy);
 
+    // VIOLATION of DIP
+    // dependencies should be abstract
     FilePlayerRepository repository;
     EmailNotifier notifier;
 
