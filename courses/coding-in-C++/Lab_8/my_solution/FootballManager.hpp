@@ -27,6 +27,9 @@ public:
     void train(int intensity) override;
 };
 
+// VIOLATION of interface segregation (I)
+// Child classes are forced to implement all functions even though they are for
+// different purposes
 class ClubService
 {
 public:
