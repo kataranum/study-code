@@ -30,13 +30,25 @@ public:
 // VIOLATION of interface segregation (I)
 // Child classes are forced to implement all functions even though they are for
 // different purposes
-class ClubService
-{
+// (fixed now)
+class PlayerTrainer {
 public:
-    virtual ~ClubService() = default;
+    virtual ~PlayerTrainer() = default;
 
-    virtual void train_player(Player &player, int intensity) = 0;
+    virtual void train_player(Player& player, int intensity) = 0;
+};
+
+class PlayerSaver {
+public:
+    virtual ~PlayerSaver() = default;
+
     virtual void save_player(const Player &player) = 0;
+};
+
+class PlayerNotifier {
+public:
+    virtual ~PlayerNotifier() = default;
+
     virtual void notify_player(const Player &player, const std::string &message) = 0;
 };
 
@@ -54,7 +66,7 @@ public:
 
 // VIOLATION of Single Responsibility
 // FootballManager does all kinds of stuff with player, should be seperated
-class FootballManager : public ClubService
+class FootballManager : public PlayerTrainer, PlayerSaver, PlayerNotifier
 {
 private:
     void select_strategy(const std::string &strategy);
