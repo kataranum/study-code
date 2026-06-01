@@ -92,6 +92,8 @@ void FootballManager::notify_player(const Player &player, const std::string &mes
 
 void FootballManager::select_strategy(const std::string &strategy)
 {
+    // VIOLATION of Open/Closed principle
+    // Impossible to add more strategies without modyfing core logic
     if (strategy == "offensive")
     {
         std::cout << "Strategy: offensive pressing.\n";
