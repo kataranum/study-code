@@ -1,0 +1,39 @@
+#ifndef VEHICLE_HPP
+#define VEHICLE_HPP
+
+// Fix 7: Move imports into source to not include them everywhere
+#include <string>
+
+// Fix 2: Add missing constant
+#define MAX_SPEED_KMH 180
+
+class Vehicle
+{
+private:
+    std::string model;
+    double speed_kmh;
+    double steering_angle;
+    double lane_offset_m;
+    bool brake_light_on;
+
+public:
+    Vehicle(const std::string &vehicle_model);
+
+    void accelerate(double amount_kmh);
+    void brake(double amount_kmh);
+    void steer(double angle);
+    void update_lane_offset(double offset);
+
+    double get_speed() const;
+    double get_steering_angle() const;
+    double get_lane_offset() const;
+
+    // Fix 3: Match function signature with source file
+    const std::string& get_model() const;
+
+    bool is_brake_light_on() const;
+
+    void print_status() const;
+};
+
+#endif
